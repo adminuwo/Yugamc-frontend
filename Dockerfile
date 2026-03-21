@@ -1,16 +1,23 @@
 # Build stage
-FROM node:18-slim AS build-stage
+FROM node:20-slim AS build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-# Production stage (using Nginx)
+# Production stage
 FROM nginx:stable-alpine
-# Copy the build output (dist/) from build-stage to Nginx public folder
+# Custom nginx config to handle SPA routing and port 8080
+RUN echo 'server { \
+    listen 8080; \
+    location / { \
+        root /usr/share/nginx/html; \
+        index index.html index.htm; \
+        try_files $uri $uri/ /index.html; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
+
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-# Google Cloud Run listens on port 80 or 8080 by default
-# But it's best to specify a standard port for Nginx
-EXPOSE 80
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
