@@ -41,7 +41,7 @@ const AdminDashboard = () => {
 
     const fetchEnquiries = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/enquiries`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://yugamc-backend-246449377479.asia-south1.run.app'}/api/admin/enquiries`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` }
             });
             const data = await response.json();
@@ -53,7 +53,7 @@ const AdminDashboard = () => {
 
     const fetchFiles = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/files`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://yugamc-backend-246449377479.asia-south1.run.app'}/api/admin/files`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` }
             });
             const data = await response.json();
@@ -71,7 +71,7 @@ const AdminDashboard = () => {
     const handleDeleteEnquiry = async (id) => {
         if(!window.confirm("क्या आप इसे सच में हटाना चाहते हैं?")) return;
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/enquiries/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://yugamc-backend-246449377479.asia-south1.run.app'}/api/admin/enquiries/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` }
             });
@@ -104,7 +104,7 @@ const AdminDashboard = () => {
         }
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/upload`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://yugamc-backend-246449377479.asia-south1.run.app'}/api/admin/upload`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` },
                 body: formData
@@ -127,7 +127,7 @@ const AdminDashboard = () => {
     const handleDeleteFile = async (filename) => {
         if(!window.confirm("क्या आप इस जानकारी को Assistant से हटाना चाहते हैं?")) return;
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/files/${filename}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://yugamc-backend-246449377479.asia-south1.run.app'}/api/admin/files/${filename}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` }
             });
