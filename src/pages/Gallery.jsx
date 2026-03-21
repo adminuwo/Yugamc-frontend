@@ -1,0 +1,254 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, Maximize2, ChevronRight, ChevronLeft } from 'lucide-react';
+
+import ss1 from '../assets/Screenshot 2026-03-20 080534.png';
+import ss2 from '../assets/Screenshot 2026-03-20 080543.png';
+import ss3 from '../assets/Screenshot 2026-03-20 080604.png';
+import ss4 from '../assets/Screenshot 2026-03-20 080612.png';
+import ss5 from '../assets/Screenshot 2026-03-20 080627.png';
+
+// Generated Premium Assets
+import galLiving from '../assets/gallery_living.png';
+import galKitchen from '../assets/gallery_kitchen.png';
+import galBedroom from '../assets/gallery_bedroom.png';
+import galEntrance from '../assets/gallery_entrance.png';
+
+const Gallery = () => {
+  const [activeTab, setActiveTab] = useState('All');
+  const [selectedImg, setSelectedImg] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const categories = ['All', 'Yash Heights', 'Completed Projects', 'Interiors', 'Exteriors', 'Commercial'];
+
+  const images = [
+    { id: 1, cat: 'Yash Heights', url: ss1, title: 'Grand Elevation', desc: 'The signature luxury facade of Yash Heights, Jabalpur.' },
+    { id: 2, cat: 'Yash Heights', url: ss2, title: 'Architectural Detail', desc: 'Premium corner perspective showing the blend of stone and glass.' },
+    { id: 3, cat: 'Exteriors', url: galEntrance, title: 'Landscape & Entrance', desc: 'Elegant entrance designs with fountains and manicured gardens.' },
+    { id: 4, cat: 'Interiors', url: galLiving, title: 'Modular Living Space', desc: 'Sophisticated living area layouts for modern families.' },
+    { id: 5, cat: 'Interiors', url: galKitchen, title: 'Designer Kitchen', desc: 'State-of-the-art modular kitchen with premium finishes.' },
+    { id: 6, cat: 'Completed Projects', url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80', title: 'The Grand Terrace', desc: 'A completed luxury penthouse terrace with panoramic views.' },
+    { id: 7, cat: 'Interiors', url: galBedroom, title: 'Master Sanctuary', desc: 'The ultimate master bedroom designed for peace and elegance.' },
+    { id: 8, cat: 'Commercial', url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80', title: 'City Plaza Lobby', desc: 'The striking entrance lobby of Jabalpur\'s newest business hub.' },
+    { id: 9, cat: 'Exteriors', url: ss3, title: 'Yash Heights Brochure', desc: 'Detailed brochure view of amenities and landscape features.' },
+  ];
+
+  const filtered = activeTab === 'All' ? images : images.filter(img => img.cat === activeTab || (activeTab === 'Yash Heights' && img.cat.includes('Yash')));
+
+  const openLightbox = (img, index) => {
+    setSelectedImg(img);
+    setCurrentIndex(index);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    setSelectedImg(null);
+    document.body.style.overflow = 'auto';
+  };
+
+  const nextImg = () => {
+    const nextIdx = (currentIndex + 1) % filtered.length;
+    setCurrentIndex(nextIdx);
+    setSelectedImg(filtered[nextIdx]);
+  };
+
+  const prevImg = () => {
+    const prevIdx = (currentIndex - 1 + filtered.length) % filtered.length;
+    setCurrentIndex(prevIdx);
+    setSelectedImg(filtered[prevIdx]);
+  };
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImg();
+      if (e.key === 'ArrowLeft') prevImg();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [selectedImg, currentIndex, filtered]);
+
+  return (
+    <div className="pt-24 min-h-screen bg-primary pb-32 overflow-hidden">
+      {/* Header */}
+      <div className="text-center py-24 px-6 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <span className="text-accent tracking-[0.6em] text-[10px] uppercase font-bold mb-6 block">YUG AMC Portfolio</span>
+          <h1 className="text-6xl md:text-9xl font-serif text-text mb-8 leading-none tracking-tighter">
+            Aesthetic <span className="italic font-light text-accent">Realities.</span>
+          </h1>
+          <p className="text-text/40 font-sans tracking-[0.2em] uppercase text-[10px] max-w-lg mx-auto border-t border-text/10 pt-8 mt-8">Where architectural vision meets impeccable delivery.</p>
+        </motion.div>
+      </div>
+
+      <div className="container mx-auto px-6 max-w-[1600px]">
+
+        {/* Magnetic Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-1 mb-24 relative">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveTab(cat)}
+              className="relative px-8 py-4 transition-all duration-500 group"
+            >
+              <span className={`relative z-10 font-sans text-[11px] tracking-[0.2em] uppercase transition-colors duration-500 ${activeTab === cat ? 'text-white' : 'text-text/50 group-hover:text-text'}`}>
+                {cat}
+              </span>
+              {activeTab === cat && (
+                <motion.div
+                  layoutId="activeFilter"
+                  className="absolute inset-0 bg-accent rounded-full -z-0"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Dynamic Grid */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((img, idx) => (
+              <motion.div
+                layout
+                key={img.id}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.1 }}
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3 } }}
+                transition={{ duration: 0.8, delay: idx * 0.05, ease: [0.76, 0, 0.24, 1] }}
+                className="relative group aspect-[4/5] overflow-hidden rounded-3xl cursor-pointer"
+                onClick={() => openLightbox(img, idx)}
+              >
+                <img
+                  src={img.url}
+                  alt={img.cat}
+                  className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110"
+                />
+
+                {/* Visual Overlay Design */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-10 backdrop-blur-[2px]">
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    className="flex flex-col space-y-2"
+                  >
+                    <span className="text-accent font-sans text-[9px] tracking-[0.4em] uppercase font-bold">{img.cat}</span>
+                    <h3 className="text-white font-serif text-3xl">{img.title}</h3>
+                    <div className="w-8 h-[1px] bg-white/30 my-4"></div>
+                    <p className="text-white/60 font-sans text-xs font-light">{img.desc}</p>
+                  </motion.div>
+
+                  <div className="absolute top-10 right-10">
+                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center backdrop-blur-md group-hover:border-accent group-hover:bg-accent transition-all duration-500">
+                      <Maximize2 size={16} className="text-white" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+
+      {/* Premium Lightbox */}
+      <AnimatePresence>
+        {selectedImg && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center"
+          >
+            <button
+              onClick={closeLightbox}
+              className="absolute top-10 right-10 z-50 p-4 bg-white/5 hover:bg-white/10 rounded-full transition-colors text-white"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Navigation */}
+            <button
+              onClick={prevImg}
+              className="absolute left-10 p-6 text-white/40 hover:text-white transition-colors z-50 flex items-center gap-4 group"
+            >
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent transition-all">
+                <ChevronLeft size={20} />
+              </div>
+              <span className="text-[10px] tracking-[0.3em] uppercase hidden md:block">Prev</span>
+            </button>
+
+            <button
+              onClick={nextImg}
+              className="absolute right-10 p-6 text-white/40 hover:text-white transition-colors z-50 flex items-center gap-4 group"
+            >
+              <span className="text-[10px] tracking-[0.3em] uppercase hidden md:block">Next</span>
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent transition-all">
+                <ChevronRight size={20} />
+              </div>
+            </button>
+
+            <div className="relative w-full h-full p-4 md:p-20 flex flex-col items-center justify-center">
+              <motion.div
+                key={selectedImg.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="relative max-h-[75vh] w-full flex items-center justify-center p-2 bg-white/5 rounded-lg"
+              >
+                <img
+                  src={selectedImg.url}
+                  alt={selectedImg.title}
+                  className="max-w-full max-h-[70vh] object-contain shadow-2xl"
+                />
+
+                <div className="absolute -bottom-24 left-0 text-left">
+                  <motion.span
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="text-accent font-sans text-[11px] tracking-[0.5em] uppercase font-bold"
+                  >
+                    {selectedImg.cat}
+                  </motion.span>
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="text-white font-serif text-5xl mt-4"
+                  >
+                    {selectedImg.title}
+                  </motion.h2>
+                </div>
+
+                <div className="absolute -bottom-24 right-0 text-right max-w-sm hidden md:block">
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.7 }}
+                    className="text-white/40 font-sans text-sm font-light leading-relaxed"
+                  >
+                    {selectedImg.desc}
+                  </motion.p>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Backtrack aesthetics */}
+            <div className="absolute inset-0 grid grid-cols-4 pointer-events-none opacity-5">
+              <div className="border-r border-white/20"></div>
+              <div className="border-r border-white/20"></div>
+              <div className="border-r border-white/20"></div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default Gallery;
