@@ -8,6 +8,19 @@ import ss3 from '../assets/Screenshot 2026-03-20 080604.png';
 import ss4 from '../assets/Screenshot 2026-03-20 080612.png';
 import ss5 from '../assets/Screenshot 2026-03-20 080627.png';
 
+// New Project Assets
+import comm1 from '../assets/commercial_elevation_1.jpeg';
+import comm2 from '../assets/commercial_elevation_2.jpeg';
+import comm3 from '../assets/commercial_elevation_3.jpeg';
+import comm4 from '../assets/commercial_elevation_4.jpeg';
+import comm5 from '../assets/commercial_elevation_5.jpeg';
+import sbiPromo from '../assets/sbi_promotional.jpeg';
+import yashEntrance from '../assets/yash_heights_entrance.jpeg';
+import yashPromo from '../assets/yash_heights_promotional.jpeg';
+import uwoComm from '../assets/uwo_commercial.jpeg';
+import villa1 from '../assets/villa_elevation_1.jpeg';
+import restInt1 from '../assets/restaurant_interior_1.jpeg';
+
 // Generated Premium Assets
 import galLiving from '../assets/gallery_living.png';
 import galKitchen from '../assets/gallery_kitchen.png';
@@ -30,12 +43,25 @@ const Gallery = () => {
   const categories = ['All', 'Upcoming', 'Yash Heights', 'Completed Projects', 'Interiors', 'Exteriors', 'Commercial'];
 
   const images = [
+    // New Images Addition
+    { id: 101, cat: 'Commercial', url: comm1, title: 'SBI Commercial Hub', desc: 'Premium commercial space featuring high-profile tenants like SBI.' },
+    { id: 102, cat: 'Commercial', url: sbiPromo, title: 'Commercial Excellence', desc: 'Luxury commercial development by YUG AMC for prime business work.' },
+    { id: 103, cat: 'Yash Heights', url: yashEntrance, title: 'Yash Heights Grand Entrance', desc: 'The welcoming face of luxury at our flagship residential project.' },
+    { id: 104, cat: 'Exteriors', url: villa1, title: 'Modern Luxury Villa', desc: 'Cutting-edge contemporary design for exclusive high-end living.' },
+    { id: 105, cat: 'Commercial', url: comm2, title: 'Naivedyam & The New Yorker', desc: 'Iconic commercial elevation housing Jabalpur\'s top lifestyle brands.' },
+    { id: 106, cat: 'Yash Heights', url: yashPromo, title: 'Secure Gated Living', desc: 'CCTV monitored, community-focused residential excellence at Yash Heights.' },
+    { id: 107, cat: 'Commercial', url: uwoComm, title: 'UWO Business Center', desc: 'Futuristic business infrastructure designed for the next generation.' },
+    { id: 108, cat: 'Commercial', url: comm3, title: 'Glass Facade Design', desc: 'Stunning architectural glass work for maximum natural light and style.' },
+    { id: 109, cat: 'Interiors', url: restInt1, title: 'Premium Café Interior', desc: 'Modern aesthetic interiors designed for the luxury hospitality segment.' },
+    { id: 110, cat: 'Commercial', url: comm4, title: 'Strategic Business Point', desc: 'Main road visibility and premium architecture for retail success.' },
+    { id: 111, cat: 'Commercial', url: comm5, title: 'Night Architectural View', desc: 'Dynamic lighting and presence of our commercial landmarks at dusk.' },
+
     // Upcoming Additions
     { id: 10, cat: 'Upcoming', url: elevation_1_3, title: 'City Plaza Elevation', desc: 'A stunning architectural overview of our upcoming commercial beacon.' },
     { id: 11, cat: 'Upcoming', url: elevation_1_2, title: 'City Plaza Front View', desc: 'Commanding front profile showcasing the expansive glass facade.' },
     { id: 12, cat: 'Upcoming', url: retail_corridor, title: 'First Floor Retail Corridor', desc: 'A vibrant and modern retail corridor designed to attract maximum footfall.' },
     { id: 13, cat: 'Upcoming', url: hotel_drop_off, title: 'Hotel Drop-Off Zone', desc: 'Premium drop-off experience seamlessly blending corporate and hospitality.' },
-    { id: 14, cat: 'Upcoming', url: retail_plaza, title: 'Retail Plaza Concept', desc: 'Expansive multi-level space precisely tailored for global brands.' },
+    { id: 14, cat: 'Upcoming', url: retail_plaza, url: retail_plaza, title: 'Retail Plaza Concept', desc: 'Expansive multi-level space precisely tailored for global brands.' },
 
     { id: 1, cat: 'Yash Heights', url: ss1, title: 'Grand Elevation', desc: 'The signature luxury facade of Yash Heights, Jabalpur.' },
     { id: 2, cat: 'Yash Heights', url: ss2, title: 'Architectural Detail', desc: 'Premium corner perspective showing the blend of stone and glass.' },

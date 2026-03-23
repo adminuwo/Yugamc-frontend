@@ -6,6 +6,12 @@ import ss3 from '../assets/Screenshot 2026-03-20 080604.png';
 import ss4 from '../assets/Screenshot 2026-03-20 080612.png';
 import ss5 from '../assets/Screenshot 2026-03-20 080627.png';
 import elevation_1_2 from '../assets/elevation_1_2.png';
+import sg_square from '../assets/sg_square.png';
+import villa1 from '../assets/villa_elevation_1.jpeg';
+import uwo_comm from '../assets/uwo_commercial.jpeg';
+import sbi_comm from '../assets/commercial_elevation_1.jpeg';
+import naivedyam_comm from '../assets/commercial_elevation_2.jpeg';
+import yash_heights_entrance from '../assets/yash_heights_entrance.jpeg';
 
 const Projects = () => {
   const projects = [
@@ -28,21 +34,42 @@ const Projects = () => {
       status: "Completed",
       location: "Vijay Nagar, Jabalpur",
       highlights: ["Lifestyle Residencies", "Iconic Architecture", "Modern Design"],
-      img: "https://images.unsplash.com/photo-1577495508048-b635879837f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+      img: sg_square
     },
     {
-      title: "Exterior Panorama",
-      status: "Yash Heights",
-      location: "South Civil Lines",
-      highlights: ["Fountain", "Main Gate", "Garden"],
-      img: ss3
+      title: "Luxury Villa",
+      status: "Ongoing",
+      location: "Civil Lines, Jabalpur",
+      highlights: ["Modern Architecture", "Private Car Port", "Premium Lifestyle"],
+      img: villa1
     },
     {
-      title: "Interior Elegance",
-      status: "Yash Heights",
-      location: "South Civil Lines",
-      highlights: ["Modular Kitchen", "Spacious Bedroom", "Drawing Room"],
-      img: ss4
+      title: "SBI Commercial Point",
+      status: "Completed",
+      location: "Vijay Nagar, Jabalpur",
+      highlights: ["Strategic Location", "Premium Outlets", "Modern Facade"],
+      img: sbi_comm
+    },
+    {
+      title: "UWO Business Hub",
+      status: "Upcoming",
+      location: "Vijay Nagar, Jabalpur",
+      highlights: ["Corporate Suites", "High Tech Infrastructure", "Prime Location"],
+      img: uwo_comm
+    },
+    {
+      title: "Naivedyam Center",
+      status: "Completed",
+      location: "Rampur, Jabalpur",
+      highlights: ["Lifestyle Hub", "Iconic Brands", "Commercial Excellence"],
+      img: naivedyam_comm
+    },
+    {
+      title: "Yash Premium",
+      status: "Ready to Move",
+      location: "South Civil Lines, Jabalpur",
+      highlights: ["Luxury Residences", "Grand Entrance", "Secure Living"],
+      img: yash_heights_entrance
     }
   ];
 
