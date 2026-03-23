@@ -26,30 +26,30 @@ const WhyChooseUs = () => {
       {/* Hero with Cinematic Background */}
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden border-b border-secondary">
         {/* Background Slideshow */}
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence>
+        <div className="absolute inset-0 z-0 bg-black">
+          {images.map((img, i) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              key={i}
+              initial={false}
+              animate={{ opacity: i === index ? 1 : 0 }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
               className="absolute inset-0"
+              style={{ zIndex: i === index ? 1 : 0, pointerEvents: 'none' }}
             >
               <motion.img
-                src={images[index]}
+                src={img}
                 alt=""
-                initial={{ scale: 1, x: 0, y: 0 }}
+                initial={false}
                 animate={{ 
-                  scale: 1.15,
-                  x: index % 2 === 0 ? [0, -20] : [0, 20],
-                  y: index % 3 === 0 ? [0, -10] : [0, 10]
+                  scale: i === index ? 1.15 : 1,
+                  x: i === index ? (i % 2 === 0 ? -20 : 20) : 0,
+                  y: i === index ? (i % 3 === 0 ? -10 : 10) : 0
                 }}
                 transition={{ duration: 6, ease: "linear" }}
                 className="w-full h-full object-cover"
               />
             </motion.div>
-          </AnimatePresence>
+          ))}
         </div>
 
         {/* Cinematic Overlay */}
@@ -106,7 +106,7 @@ const WhyChooseUs = () => {
         <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
           <div className="mb-12">
             <h2 className="text-4xl md:text-7xl lg:text-8xl font-serif text-text tracking-tight leading-[1.2]">
-              <div className="overflow-hidden mb-2">
+              <div className="flex flex-wrap justify-center mb-2">
                 {"A Standard That".split(" ").map((word, i) => (
                   <motion.span
                     key={i}
@@ -124,7 +124,7 @@ const WhyChooseUs = () => {
                   </motion.span>
                 ))}
               </div>
-              <div className="overflow-hidden">
+              <div className="flex flex-wrap justify-center">
                 {"Never Drops".split("").map((char, i) => (
                   <motion.span
                     key={i}

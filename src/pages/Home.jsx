@@ -8,17 +8,17 @@ import WhyChooseUsSection from '../components/home/WhyChooseUsSection';
 import Testimonials from '../components/home/Testimonials';
 import FinalCTA from '../components/home/FinalCTA';
 
-const Home = () => {
+const Home = ({ onBookVisit }) => {
   return (
     <div className="w-full">
-      <Hero />
+      <Hero onBookVisit={onBookVisit} />
       <TrustSection />
       <AboutPreview />
       <FeaturedProjects />
       <UpcomingHighlight />
       <WhyChooseUsSection />
       <Testimonials />
-      <FinalCTA />
+      <FinalCTA onBookVisit={onBookVisit} />
     </div>
   );
 };

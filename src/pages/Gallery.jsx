@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Maximize2, ChevronRight, ChevronLeft } from 'lucide-react';
+import { X, Maximize2, ChevronRight, ChevronLeft, ChevronDown } from 'lucide-react';
 
 import ss1 from '../assets/Screenshot 2026-03-20 080534.png';
 import ss2 from '../assets/Screenshot 2026-03-20 080543.png';
@@ -14,14 +14,29 @@ import galKitchen from '../assets/gallery_kitchen.png';
 import galBedroom from '../assets/gallery_bedroom.png';
 import galEntrance from '../assets/gallery_entrance.png';
 
+// New High-Res Project Assets
+import elevation_1_2 from '../assets/elevation_1_2.png';
+import elevation_1_3 from '../assets/elevation 1.3.png';
+import retail_plaza from '../assets/Retail Plaza Concept View.jpg.jpeg';
+import retail_corridor from '../assets/First Floor Retail Corridor Concept View.jpg.jpeg';
+import hotel_drop_off from '../assets/Hotel Drop Off Concept View.jpg.jpeg';
+
 const Gallery = () => {
   const [activeTab, setActiveTab] = useState('All');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedImg, setSelectedImg] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const categories = ['All', 'Yash Heights', 'Completed Projects', 'Interiors', 'Exteriors', 'Commercial'];
+  const categories = ['All', 'Upcoming', 'Yash Heights', 'Completed Projects', 'Interiors', 'Exteriors', 'Commercial'];
 
   const images = [
+    // Upcoming Additions
+    { id: 10, cat: 'Upcoming', url: elevation_1_3, title: 'City Plaza Elevation', desc: 'A stunning architectural overview of our upcoming commercial beacon.' },
+    { id: 11, cat: 'Upcoming', url: elevation_1_2, title: 'City Plaza Front View', desc: 'Commanding front profile showcasing the expansive glass facade.' },
+    { id: 12, cat: 'Upcoming', url: retail_corridor, title: 'First Floor Retail Corridor', desc: 'A vibrant and modern retail corridor designed to attract maximum footfall.' },
+    { id: 13, cat: 'Upcoming', url: hotel_drop_off, title: 'Hotel Drop-Off Zone', desc: 'Premium drop-off experience seamlessly blending corporate and hospitality.' },
+    { id: 14, cat: 'Upcoming', url: retail_plaza, title: 'Retail Plaza Concept', desc: 'Expansive multi-level space precisely tailored for global brands.' },
+
     { id: 1, cat: 'Yash Heights', url: ss1, title: 'Grand Elevation', desc: 'The signature luxury facade of Yash Heights, Jabalpur.' },
     { id: 2, cat: 'Yash Heights', url: ss2, title: 'Architectural Detail', desc: 'Premium corner perspective showing the blend of stone and glass.' },
     { id: 3, cat: 'Exteriors', url: galEntrance, title: 'Landscape & Entrance', desc: 'Elegant entrance designs with fountains and manicured gardens.' },
@@ -29,7 +44,6 @@ const Gallery = () => {
     { id: 5, cat: 'Interiors', url: galKitchen, title: 'Designer Kitchen', desc: 'State-of-the-art modular kitchen with premium finishes.' },
     { id: 6, cat: 'Completed Projects', url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80', title: 'The Grand Terrace', desc: 'A completed luxury penthouse terrace with panoramic views.' },
     { id: 7, cat: 'Interiors', url: galBedroom, title: 'Master Sanctuary', desc: 'The ultimate master bedroom designed for peace and elegance.' },
-    { id: 8, cat: 'Commercial', url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80', title: 'City Plaza Lobby', desc: 'The striking entrance lobby of Jabalpur\'s newest business hub.' },
     { id: 9, cat: 'Exteriors', url: ss3, title: 'Yash Heights Brochure', desc: 'Detailed brochure view of amenities and landscape features.' },
   ];
 
@@ -87,8 +101,48 @@ const Gallery = () => {
 
       <div className="container mx-auto px-6 max-w-[1600px]">
 
-        {/* Magnetic Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-1 mb-24 relative">
+        {/* Mobile Custom Dropdown Filter */}
+        <div className="md:hidden flex justify-center mb-16 relative w-full max-w-[280px] mx-auto z-40">
+          <button 
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="w-full bg-white/70 backdrop-blur-md border border-accent/20 text-text text-xs tracking-[0.2em] uppercase py-4 px-6 rounded-full flex items-center justify-between shadow-[0_5px_15px_-5px_rgba(196,106,74,0.15)] ring-1 ring-white/50 transition-all hover:bg-white/90"
+          >
+            <span className="font-medium">{activeTab}</span>
+            <ChevronDown size={14} className={`text-accent transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+          </button>
+          
+          <AnimatePresence>
+            {isDropdownOpen && (
+              <motion.div 
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-full left-0 right-0 mt-3 bg-white/95 backdrop-blur-xl border border-text/10 rounded-2xl shadow-xl overflow-hidden py-2"
+              >
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setActiveTab(cat);
+                      setIsDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-6 py-3 pl-8 text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 border-l-2 ${
+                      activeTab === cat 
+                        ? 'border-accent bg-accent/5 text-accent font-bold' 
+                        : 'border-transparent text-text/70 hover:bg-black/5 hover:text-text'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Magnetic Filter Tabs - Desktop */}
+        <div className="hidden md:flex flex-wrap justify-center gap-1 mb-24 relative">
           {categories.map((cat) => (
             <button
               key={cat}

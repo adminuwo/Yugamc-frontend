@@ -5,6 +5,7 @@ import ss2 from '../assets/Screenshot 2026-03-20 080543.png';
 import ss3 from '../assets/Screenshot 2026-03-20 080604.png';
 import ss4 from '../assets/Screenshot 2026-03-20 080612.png';
 import ss5 from '../assets/Screenshot 2026-03-20 080627.png';
+import elevation_1_2 from '../assets/elevation_1_2.png';
 
 const Projects = () => {
   const projects = [
@@ -20,7 +21,7 @@ const Projects = () => {
       status: "Upcoming",
       location: "Rampur Chowk, Jabalpur",
       highlights: ["Commercial Hub", "High Footfall", "Business Center"],
-      img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+      img: elevation_1_2
     },
     {
       title: "SG Square",

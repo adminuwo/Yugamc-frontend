@@ -13,7 +13,9 @@ import {
     Plus,
     Check,
     Database,
-    RefreshCcw
+    RefreshCcw,
+    Download,
+    MessageSquare
 } from 'lucide-react';
 import yugLogo from '../assets/yug logo.webp';
 
@@ -27,6 +29,11 @@ const AdminDashboard = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filterType, setFilterType] = useState('All');
     const [selectedEnquiry, setSelectedEnquiry] = useState(null);
+    const [chatLeads, setChatLeads] = useState([]);
+    const [selectedChatLead, setSelectedChatLead] = useState(null);
+    const [siteVisits, setSiteVisits] = useState([]);
+    const [selectedSiteVisit, setSelectedSiteVisit] = useState(null);
+    const [isExporting, setIsExporting] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -36,6 +43,8 @@ const AdminDashboard = () => {
         } else {
             fetchEnquiries();
             fetchFiles();
+            fetchChatLeads();
+            fetchSiteVisits();
         }
     }, [navigate]);
 
@@ -63,6 +72,53 @@ const AdminDashboard = () => {
         }
     };
 
+    const fetchChatLeads = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://yugamc-backend-246449377479.asia-south1.run.app'}/api/admin/chat-leads`, {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` }
+            });
+            const data = await response.json();
+            if (response.ok) setChatLeads(data.leads || []);
+        } catch (err) {
+            console.error('Error fetching chat leads:', err);
+        }
+    };
+
+    const fetchSiteVisits = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://yugamc-backend-246449377479.asia-south1.run.app'}/api/admin/book-visits`, {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` }
+            });
+            const data = await response.json();
+            if (response.ok) setSiteVisits(data.leads || []);
+        } catch (err) {
+            console.error('Error fetching site visits:', err);
+        }
+    };
+
+    const handleExportLeads = async () => {
+        setIsExporting(true);
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://yugamc-backend-246449377479.asia-south1.run.app'}/api/admin/chat-leads/export`, {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` }
+            });
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `yug_amc_leads_${new Date().toISOString().split('T')[0]}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            }
+        } catch (err) {
+            console.error('Export failed:', err);
+        } finally {
+            setIsExporting(false);
+        }
+    };
+
     const handleLogout = () => {
         localStorage.removeItem('adminToken');
         navigate('/admin/login');
@@ -78,6 +134,22 @@ const AdminDashboard = () => {
             if (response.ok) {
                 setMessage({ type: 'success', text: 'सफलतापूर्वक हटा दिया गया।' });
                 fetchEnquiries();
+            }
+        } catch (err) {
+            setMessage({ type: 'error', text: 'हटाने में कोई दिक्कत आई।' });
+        }
+    };
+
+    const handleDeleteSiteVisit = async (id) => {
+        if(!window.confirm("क्या आप इस बुकिंग को हटाना चाहते हैं?")) return;
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://yugamc-backend-246449377479.asia-south1.run.app'}/api/admin/book-visits/${id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('adminToken')}` }
+            });
+            if (response.ok) {
+                setMessage({ type: 'success', text: 'बुकिंग सफलतापूर्वक हटा दी गई।' });
+                fetchSiteVisits();
             }
         } catch (err) {
             setMessage({ type: 'error', text: 'हटाने में कोई दिक्कत आई।' });
@@ -172,6 +244,18 @@ const AdminDashboard = () => {
                                 User Entries
                             </button>
                             <button 
+                                onClick={() => setActiveTab('chat_leads')}
+                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'chat_leads' ? 'bg-accent text-white' : 'text-text/40'}`}
+                            >
+                                Chat Leads
+                            </button>
+                            <button 
+                                onClick={() => setActiveTab('site_visits')}
+                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'site_visits' ? 'bg-accent text-white' : 'text-text/40'}`}
+                            >
+                                Site Visits
+                            </button>
+                            <button 
                                 onClick={() => setActiveTab('training')}
                                 className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'training' ? 'bg-accent text-white' : 'text-text/40'}`}
                             >
@@ -251,6 +335,122 @@ const AdminDashboard = () => {
                                                         <div className="flex justify-end gap-2">
                                                             <button onClick={() => setSelectedEnquiry(lead)} className="p-2 text-text/30 hover:text-accent group-hover:scale-110 transition-transform"><Eye size={16} /></button>
                                                             <button onClick={() => handleDeleteEnquiry(lead.id)} className="p-2 text-red-300 hover:text-red-500 group-hover:scale-110 transition-transform"><Trash2 size={16} /></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {activeTab === 'chat_leads' && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-xl font-bold">Chat Assistant Leads</h2>
+                            <button 
+                                onClick={handleExportLeads}
+                                disabled={isExporting}
+                                className="flex items-center gap-2 px-4 py-2 bg-text text-white rounded-xl text-xs font-bold hover:bg-accent transition-all disabled:opacity-50"
+                            >
+                                {isExporting ? <RefreshCcw size={14} className="animate-spin" /> : <Download size={14} />}
+                                Export CSV
+                            </button>
+                        </div>
+
+                        <div className="bg-white rounded-3xl border border-secondary shadow-sm overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead className="bg-primary/30 border-b border-secondary">
+                                        <tr>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Lead Info</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Reg. Date</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Messages</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50 text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-secondary/50">
+                                        {chatLeads.length === 0 ? (
+                                            <tr><td colSpan="4" className="px-6 py-10 text-center text-text/30 italic">Abhi koi chat lead nahi hai.</td></tr>
+                                        ) : (
+                                            chatLeads.map((lead) => (
+                                                <tr key={lead._id} className="hover:bg-primary/10 group">
+                                                    <td className="px-6 py-4">
+                                                        <div className="font-bold text-sm">{lead.name}</div>
+                                                        <div className="text-[10px] text-text/30">{lead.email}</div>
+                                                    </td>
+                                                    <td className="px-6 py-4 text-xs text-text/30">
+                                                        {new Date(lead.timestamp).toLocaleString()}
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded-lg ${lead.messages.length > 0 ? 'bg-green-50 text-green-600' : 'bg-secondary text-text/30'}`}>
+                                                            {lead.messages.length} Msgs
+                                                        </span>
+                                                    </td>
+                                                    <td className="px-6 py-4 text-right">
+                                                        <button 
+                                                            onClick={() => setSelectedChatLead(lead)}
+                                                            className="p-2 text-text/30 hover:text-accent transition-all"
+                                                        >
+                                                            <MessageSquare size={16} />
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {activeTab === 'site_visits' && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-xl font-bold">Site Visit Bookings</h2>
+                        </div>
+
+                        <div className="bg-white rounded-3xl border border-secondary shadow-sm overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead className="bg-primary/30 border-b border-secondary">
+                                        <tr>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Customer Info</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Location / Budget</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Visit Slot</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Booked On</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50 text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-secondary/50">
+                                        {siteVisits.length === 0 ? (
+                                            <tr><td colSpan="5" className="px-6 py-10 text-center text-text/30 italic">Abhi koi booking nahi hai.</td></tr>
+                                        ) : (
+                                            siteVisits.map((visit) => (
+                                                <tr key={visit._id} className="hover:bg-primary/10 group">
+                                                    <td className="px-6 py-4">
+                                                        <div className="font-bold text-sm">{visit.name}</div>
+                                                        <div className="text-[10px] text-text/30">{visit.phone}</div>
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        <div className="text-xs font-medium text-text/80">{visit.location}</div>
+                                                        <div className="text-[10px] text-accent font-bold uppercase">{visit.budget}</div>
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        <div className="text-xs font-bold text-text/80">{new Date(visit.visitDate).toLocaleDateString('en-GB')}</div>
+                                                        <div className="text-[10px] text-text/40 uppercase">{visit.timeSlot}</div>
+                                                    </td>
+                                                    <td className="px-6 py-4 text-xs text-text/30">
+                                                        {new Date(visit.timestamp).toLocaleDateString()}
+                                                    </td>
+                                                    <td className="px-6 py-4 text-right">
+                                                        <div className="flex justify-end gap-2">
+                                                            <button onClick={() => setSelectedSiteVisit(visit)} className="p-2 text-text/30 hover:text-accent group-hover:scale-110 transition-transform"><Eye size={16} /></button>
+                                                            <button onClick={() => handleDeleteSiteVisit(visit._id)} className="p-2 text-red-300 hover:text-red-500 group-hover:scale-110 transition-transform"><Trash2 size={16} /></button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -392,6 +592,91 @@ const AdminDashboard = () => {
                                 <div className="flex gap-3 relative z-10">
                                     <a href={`tel:${selectedEnquiry.phone}`} className="flex-1 bg-text text-white py-5 rounded-2xl text-center font-bold text-xs uppercase tracking-widest hover:bg-accent transition-all shadow-lg">Phone Karein</a>
                                     <a href={`mailto:${selectedEnquiry.email}`} className="flex-1 bg-secondary text-text/60 py-5 rounded-2xl text-center font-bold text-xs uppercase tracking-widest hover:border-accent hover:text-accent transition-all">Email Karein</a>
+                                </div>
+                            </motion.div>
+                        </div>
+                    )}
+                </AnimatePresence>
+
+                {/* Chat History Modal */}
+                <AnimatePresence>
+                    {selectedChatLead && (
+                        <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedChatLead(null)} className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+                            <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative w-full max-w-2xl bg-white rounded-[2rem] h-[80vh] flex flex-col shadow-2xl overflow-hidden">
+                                <div className="p-6 border-b border-secondary flex justify-between items-center bg-primary/30">
+                                    <div>
+                                        <h3 className="text-xl font-serif font-bold">{selectedChatLead.name}</h3>
+                                        <p className="text-[10px] text-text/40 font-bold uppercase tracking-wider">{selectedChatLead.email}</p>
+                                    </div>
+                                    <button onClick={() => setSelectedChatLead(null)} className="p-2 hover:bg-white rounded-full transition-colors"><X size={20} /></button>
+                                </div>
+                                
+                                <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-[#F9FAFB]">
+                                    {selectedChatLead.messages.length === 0 ? (
+                                        <div className="h-full flex items-center justify-center text-text/30 italic text-sm">No messages yet.</div>
+                                    ) : (
+                                        selectedChatLead.messages.map((m, i) => (
+                                            <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                                                <div className={`max-w-[80%] p-4 rounded-2xl text-sm leading-relaxed ${m.role === 'user' ? 'bg-accent text-white rounded-tr-none' : 'bg-white border border-secondary rounded-tl-none shadow-sm text-text/80'}`}>
+                                                    <div className="flex justify-between gap-4 mb-1 opacity-50 font-bold uppercase text-[8px]">
+                                                        <span>{m.role === 'user' ? 'Customer' : 'AI Assistant'}</span>
+                                                        <span>{new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                                    </div>
+                                                    <div dangerouslySetInnerHTML={{ __html: m.content }} />
+                                                </div>
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+                                <div className="p-6 border-t border-secondary bg-white text-center">
+                                    <p className="text-[9px] text-text/30 font-bold uppercase tracking-[0.2em]">YUG AMC Chat Intelligence</p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    )}
+                </AnimatePresence>
+                {/* Site Visit Details Modal */}
+                <AnimatePresence>
+                    {selectedSiteVisit && (
+                        <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedSiteVisit(null)} className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+                            <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="relative w-full max-w-lg bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-2xl" />
+                                <div className="flex justify-between items-start mb-8 relative z-10">
+                                    <h3 className="text-2xl font-serif font-bold">Booking Details</h3>
+                                    <button onClick={() => setSelectedSiteVisit(null)} className="p-1 hover:bg-primary rounded-full transition-colors"><X size={24} className="text-text/30" /></button>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4 mb-8 relative z-10">
+                                    <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50 col-span-2">
+                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Customer</p>
+                                        <p className="font-bold text-text">{selectedSiteVisit.name}</p>
+                                        <p className="text-xs text-text/60">{selectedSiteVisit.email}</p>
+                                    </div>
+                                    <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
+                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Phone</p>
+                                        <p className="font-bold text-text">{selectedSiteVisit.phone}</p>
+                                    </div>
+                                    <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
+                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Location</p>
+                                        <p className="font-bold text-text">{selectedSiteVisit.location}</p>
+                                    </div>
+                                    <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
+                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Date</p>
+                                        <p className="font-bold text-text">{new Date(selectedSiteVisit.visitDate).toLocaleDateString('en-GB')}</p>
+                                    </div>
+                                    <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
+                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Time Slot</p>
+                                        <p className="font-bold text-text">{selectedSiteVisit.timeSlot}</p>
+                                    </div>
+                                    <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 col-span-2">
+                                        <p className="text-[10px] uppercase font-bold text-accent mb-1 tracking-widest">Budget Preference</p>
+                                        <p className="font-bold text-text">{selectedSiteVisit.budget}</p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-3 relative z-10">
+                                    <a href={`https://wa.me/${selectedSiteVisit.phone.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="flex-1 bg-[#25D366] text-white py-5 rounded-2xl text-center font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-lg">WhatsApp</a>
+                                    <a href={`tel:${selectedSiteVisit.phone}`} className="flex-1 bg-text text-white py-5 rounded-2xl text-center font-bold text-xs uppercase tracking-widest hover:bg-accent transition-all shadow-lg">Call</a>
                                 </div>
                             </motion.div>
                         </div>

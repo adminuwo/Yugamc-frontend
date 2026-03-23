@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Send, PhoneCall } from 'lucide-react';
 
-const FinalCTA = () => {
+const FinalCTA = ({ onBookVisit }) => {
   return (
     <section className="py-32 bg-text relative overflow-hidden">
       {/* Cinematic Backdrop Overlay */}
@@ -36,12 +36,15 @@ const FinalCTA = () => {
                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.76, 0, 0.24, 1]" />
              </Link>
 
-             <Link to="/contact" className="group relative px-12 py-5 border border-white/20 text-white font-sans tracking-[0.3em] uppercase text-[10px] font-bold rounded-full overflow-hidden transition-all duration-500 hover:border-white active:scale-95">
+             <button 
+               onClick={onBookVisit}
+               className="group relative px-12 py-5 border border-white/20 text-white font-sans tracking-[0.3em] uppercase text-[10px] font-bold rounded-full overflow-hidden transition-all duration-500 hover:border-white active:scale-95"
+             >
                <span className="relative z-10 flex items-center gap-2 group-hover:text-text transition-colors duration-500">
                  Schedule Visit <PhoneCall size={14} className="group-hover:scale-110 transition-transform duration-500" />
                </span>
                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.76, 0, 0.24, 1]" />
-             </Link>
+             </button>
           </div>
         </motion.div>
       </div>

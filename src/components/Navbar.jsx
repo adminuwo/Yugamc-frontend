@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import yugLogo from '../assets/yug logo.webp';
 
-const Navbar = () => {
+const Navbar = ({ onBookVisit }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -34,6 +34,18 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Lock scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       <header className={`fixed top-0 w-full z-[100] transition-all duration-500 ease-in-out ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-white/10 backdrop-blur-sm py-6'}`}>
@@ -58,9 +70,12 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Link to="/contact" className="px-6 py-2.5 bg-accent text-white font-medium text-sm hover:bg-text transition-all transform hover:scale-105 duration-300 shadow-xl shadow-accent/20">
+            <button 
+              onClick={onBookVisit}
+              className="px-6 py-2.5 bg-accent text-white font-medium text-sm hover:bg-text transition-all transform hover:scale-105 duration-300 shadow-xl shadow-accent/20"
+            >
               Book Site Visit
-            </Link>
+            </button>
           </nav>
 
           {/* Mobile Toggle */}
@@ -73,61 +88,108 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* Mobile Nav Overlay - Now outside header for true fixed inset-0 behavior */}
+      {/* Mobile Nav Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed inset-0 bg-white z-[99999] flex flex-col p-8 overflow-y-auto"
-          >
-            {/* Overlay Header */}
-            <div className="flex items-center justify-between mb-20">
-              <Link to="/" onClick={toggleMobileMenu} className="flex items-center">
-                <img
-                  src={yugLogo}
-                  alt="YUG AMC"
-                  className="h-14 w-auto object-contain"
-                />
-              </Link>
-              <button
-                onClick={toggleMobileMenu}
-                className="p-2 text-text hover:text-accent transition-colors"
-                aria-label="Close Menu"
-              >
-                <X size={32} />
-              </button>
-            </div>
-
-            {/* Navigation Links */}
-            <nav className="flex flex-col space-y-8 my-auto min-h-max">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 + (i * 0.08) }}
+          <>
+            {/* Backdrop blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMobileMenu}
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[99998]"
+            />
+            
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed inset-y-0 right-0 w-[85%] sm:w-[400px] bg-white z-[99999] flex flex-col shadow-2xl overflow-hidden"
+            >
+              {/* Overlay Header */}
+              <div className="flex items-center justify-between p-6 border-b border-secondary/50">
+                <Link to="/" onClick={toggleMobileMenu} className="flex items-center">
+                  <img
+                    src={yugLogo}
+                    alt="YUG AMC"
+                    className="h-10 w-auto object-contain"
+                  />
+                  <span className="ml-3 font-serif font-bold text-text tracking-tighter text-lg">YUGAMC</span>
+                </Link>
+                <button
+                  onClick={toggleMobileMenu}
+                  className="p-2 text-text hover:text-accent transition-colors bg-secondary/20 rounded-full"
+                  aria-label="Close Menu"
                 >
-                  <Link
-                    to={link.path}
-                    className={`text-4xl md:text-6xl font-serif transition-all hover:pl-6 hover:text-accent inline-block ${location.pathname === link.path ? 'text-accent pl-6' : 'text-text'}`}
-                    onClick={toggleMobileMenu}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
+                  <X size={22} />
+                </button>
+              </div>
 
-            {/* Overlay Footer Info */}
-            <div className="mt-20 pt-10 border-t border-secondary">
-              <span className="text-accent text-[11px] tracking-[0.4em] uppercase font-bold block mb-4">Inquiries</span>
-              <p className="text-text font-serif text-xl mb-1">yugamcteam@gmail.com</p>
-              <p className="text-text/70 font-sans text-lg">+91 97523 26763</p>
-            </div>
-          </motion.div>
+              {/* Navigation Links */}
+              <div className="flex-1 overflow-y-auto px-6 py-10">
+                <nav className="flex flex-col space-y-2">
+                  {navLinks.map((link, i) => {
+                    const isActive = location.pathname === link.path;
+                    return (
+                      <motion.div
+                        key={link.name}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 + (i * 0.05) }}
+                      >
+                        <Link
+                          to={link.path}
+                          className={`group relative flex items-center text-[20px] font-serif tracking-wide py-4 px-4 rounded-xl transition-all duration-300 ${
+                            isActive 
+                              ? 'text-accent font-semibold bg-accent/5' 
+                              : 'text-text/80 hover:text-accent hover:translate-x-2'
+                          }`}
+                          onClick={toggleMobileMenu}
+                        >
+                          {isActive && (
+                            <motion.div 
+                              layoutId="activeIndicator"
+                              className="absolute left-0 w-1 h-6 bg-accent rounded-full"
+                            />
+                          )}
+                          {link.name}
+                        </Link>
+                        {i < navLinks.length - 1 && (
+                          <div className="h-px w-full bg-secondary/30 mx-4" />
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </nav>
+
+                <div className="mt-12 p-6 bg-[#f8f8f8] rounded-2xl border border-secondary/30 shadow-sm">
+                  <span className="text-accent text-[11px] tracking-[0.3em] uppercase font-bold block mb-4 opacity-80">Inquiries</span>
+                  <div className="space-y-3">
+                    <a href="mailto:admin@uwo24.com" className="block text-text/90 font-serif text-lg hover:text-accent transition-colors">
+                      admin@uwo24.com
+                    </a>
+                    <a href="https://wa.me/918871190020" target="_blank" rel="noopener noreferrer" className="block text-text/70 font-sans text-sm hover:text-accent transition-colors">
+                      +91 88711 90020
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 border-t border-secondary/50 bg-white shadow-[0_-10px_20px_rgba(0,0,0,0.02)]">
+                <button 
+                  onClick={() => {
+                    toggleMobileMenu();
+                    onBookVisit();
+                  }}
+                  className="flex items-center justify-center w-full py-4 bg-accent text-white font-medium rounded-xl shadow-lg shadow-accent/20 hover:bg-text hover:shadow-xl transition-all duration-300 transform active:scale-[0.98]"
+                >
+                  Book a Site Visit
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

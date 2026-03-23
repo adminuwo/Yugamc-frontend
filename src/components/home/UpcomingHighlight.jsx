@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import elevation_1_2 from '../../assets/elevation_1_2.png';
 
 const UpcomingHighlight = () => {
   return (
@@ -17,7 +18,7 @@ const UpcomingHighlight = () => {
           >
             <div className="aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)]">
               <img 
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                src={elevation_1_2} 
                 alt="City Plaza" 
                 className="w-full h-full object-cover transition-transform duration-[3000ms] hover:scale-110" 
               />

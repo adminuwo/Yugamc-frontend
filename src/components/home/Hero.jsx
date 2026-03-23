@@ -12,7 +12,7 @@ import h8 from '../../assets/h8.webp';
 
 const images = [h8, h6, h5, h1, h3, h4, h2];
 
-const Hero = () => {
+const Hero = ({ onBookVisit }) => {
   const [currentImage, setCurrentImage] = React.useState(0);
 
   React.useEffect(() => {
@@ -95,12 +95,15 @@ const Hero = () => {
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.76, 0, 0.24, 1]" />
           </Link>
 
-          <Link to="/contact" className="group relative px-10 py-5 border border-text/20 text-text font-sans tracking-[0.2em] uppercase text-[10px] font-bold rounded-full overflow-hidden transition-all duration-500 backdrop-blur-md hover:border-text active:scale-95">
+          <button 
+            onClick={onBookVisit}
+            className="group relative px-10 py-5 border border-text/20 text-text font-sans tracking-[0.2em] uppercase text-[10px] font-bold rounded-full overflow-hidden transition-all duration-500 backdrop-blur-md hover:border-text active:scale-95"
+          >
             <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-500">
               Book Site Visit <Calendar size={14} className="group-hover:scale-110 transition-transform duration-500" />
             </span>
             <div className="absolute inset-0 bg-text translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.76, 0, 0.24, 1]" />
-          </Link>
+          </button>
         </motion.div>
 
         {/* Scroll Indicator */}

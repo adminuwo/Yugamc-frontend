@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ss1 from '../../assets/Screenshot 2026-03-20 080534.png';
+import elevation_1_2 from '../../assets/elevation_1_2.png';
 
 const FeaturedProjects = () => {
   const projects = [
@@ -16,7 +17,7 @@ const FeaturedProjects = () => {
       id: 2,
       title: 'City Plaza',
       desc: 'Future-ready commercial spaces at the heart of the city.',
-      img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      img: elevation_1_2,
       link: '/upcoming'
     }
   ];

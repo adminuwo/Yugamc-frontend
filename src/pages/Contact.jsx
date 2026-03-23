@@ -122,7 +122,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-serif text-lg mb-1 text-text">Phone</h4>
-                      <p className="font-sans text-text/70 text-sm leading-relaxed">9752326763, 8871190020</p>
+                      <p className="font-sans text-text/70 text-sm leading-relaxed">8871190020</p>
                     </div>
                   </div>
                   <div className="flex items-start sm:col-span-2">
@@ -131,7 +131,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-serif text-lg mb-1 text-text">Email</h4>
-                      <p className="font-sans text-text/70 text-sm leading-relaxed">yugamcteam@gmail.com</p>
+                      <p className="font-sans text-text/70 text-sm leading-relaxed">admin@uwo24.com</p>
                     </div>
                   </div>
                 </div>
