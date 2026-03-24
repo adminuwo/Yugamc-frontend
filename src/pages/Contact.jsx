@@ -88,7 +88,7 @@ const Contact = () => {
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.8 }}
               className="space-y-16"
             >
@@ -141,7 +141,7 @@ const Contact = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
                 className="mt-7"
               >
@@ -201,7 +201,7 @@ const Contact = () => {
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.8 }}
               className="sticky top-32 bg-white/70 backdrop-blur-[10px] p-10 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-white/20 rounded-[20px] relative overflow-hidden"
             >

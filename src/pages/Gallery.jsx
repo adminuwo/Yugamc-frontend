@@ -125,7 +125,7 @@ const Gallery = () => {
         </motion.div>
       </div>
 
-      <div className="container mx-auto px-6 max-w-[1600px]">
+      <div className="container mx-auto px-2 md:px-6 max-w-[1600px]">
 
         {/* Mobile Custom Dropdown Filter */}
         <div className="md:hidden flex justify-center mb-16 relative w-full max-w-[280px] mx-auto z-40">
@@ -190,47 +190,59 @@ const Gallery = () => {
         </div>
 
         {/* Dynamic Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div layout className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
           <AnimatePresence mode="popLayout">
-            {filtered.map((img, idx) => (
-              <motion.div
-                layout
-                key={img.id}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.1 }}
-                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3 } }}
-                transition={{ duration: 0.8, delay: idx * 0.05, ease: [0.76, 0, 0.24, 1] }}
-                className="relative group aspect-[4/5] overflow-hidden rounded-3xl cursor-pointer"
-                onClick={() => openLightbox(img, idx)}
-              >
-                <img
-                  src={img.url}
-                  alt={img.cat}
-                  className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110"
-                />
+            {filtered.map((img, idx) => {
+              // Premium balanced grid:
+              // Mobile: Big (full width) followed by Medium (half width) pattern
+              const isLargeMobile = idx % 3 === 0;
+              
+              const mSpan = isLargeMobile ? 2 : 1;
+              const mAspect = isLargeMobile ? 'aspect-[16/9]' : 'aspect-[4/5]';
 
-                {/* Visual Overlay Design */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-10 backdrop-blur-[2px]">
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    className="flex flex-col space-y-2"
-                  >
-                    <span className="text-accent font-sans text-[9px] tracking-[0.4em] uppercase font-bold">{img.cat}</span>
-                    <h3 className="text-white font-serif text-3xl">{img.title}</h3>
-                    <div className="w-8 h-[1px] bg-white/30 my-4"></div>
-                    <p className="text-white/60 font-sans text-xs font-light">{img.desc}</p>
-                  </motion.div>
+              return (
+                <motion.div
+                  layout
+                  key={img.id}
+                  initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: false, margin: "50px" }}
+                  exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.4 } }}
+                  transition={{ duration: 0.6, delay: (idx % 3) * 0.1, ease: "easeOut" }}
+                  className={`relative group overflow-hidden rounded-2xl md:rounded-3xl cursor-pointer active:scale-[0.98] active:shadow-md transition-all duration-500
+                    col-span-${mSpan} md:col-span-1
+                    ${mAspect} md:aspect-[4/5] min-h-[160px]`}
+                  onClick={() => openLightbox(img, idx)}
+                >
+                  <img
+                    src={img.url}
+                    alt={img.cat}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-[800ms] md:duration-[2000ms] ease-out group-hover:scale-105 active:scale-[1.03]"
+                  />
 
-                  <div className="absolute top-10 right-10">
-                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center backdrop-blur-md group-hover:border-accent group-hover:bg-accent transition-all duration-500">
-                      <Maximize2 size={16} className="text-white" />
+                  {/* Visual Overlay Design */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 active:opacity-100 transition-opacity duration-300 md:duration-700 flex flex-col justify-end p-3 md:p-10 backdrop-blur-[2px] md:backdrop-blur-[2px]">
+                    <motion.div
+                      initial={{ y: 10, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      className="flex flex-col space-y-1 md:space-y-2"
+                    >
+                      <span className="text-accent font-sans text-[7px] md:text-[9px] tracking-[0.2em] md:tracking-[0.4em] uppercase font-bold">{img.cat}</span>
+                      <h3 className="text-white font-serif text-sm md:text-3xl leading-tight">{img.title}</h3>
+                      <div className="w-8 h-[1px] bg-white/30 my-2 md:my-4 hidden md:block"></div>
+                      <p className="text-white/60 font-sans text-xs font-light hidden md:block">{img.desc}</p>
+                    </motion.div>
+
+                    <div className="absolute top-4 right-4 md:top-10 md:right-10 hidden md:flex">
+                      <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center backdrop-blur-md group-hover:border-accent group-hover:bg-accent transition-all duration-500">
+                        <Maximize2 size={16} className="text-white" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
       </div>

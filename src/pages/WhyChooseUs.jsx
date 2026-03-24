@@ -112,7 +112,7 @@ const WhyChooseUs = () => {
                     key={i}
                     initial={{ y: 60, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: false, amount: 0.2 }}
                     transition={{ 
                       duration: 0.8, 
                       delay: i * 0.1, 
@@ -130,7 +130,7 @@ const WhyChooseUs = () => {
                     key={i}
                     initial={{ y: 60, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: false, amount: 0.2 }}
                     transition={{ 
                       duration: 0.8, 
                       delay: 0.3 + (i * 0.03), 
@@ -149,7 +149,7 @@ const WhyChooseUs = () => {
             <motion.div 
               initial={{ width: 0, opacity: 0 }}
               whileInView={{ width: 120, opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
               className="h-[1px] bg-accent mx-auto mt-8 md:mt-12"
             />
@@ -159,7 +159,7 @@ const WhyChooseUs = () => {
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-lg md:text-xl text-text/70 font-sans leading-relaxed max-w-[700px] text-center"
 

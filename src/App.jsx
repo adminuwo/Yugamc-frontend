@@ -10,6 +10,7 @@ import UpcomingProject from './pages/UpcomingProject';
 import WhyChooseUs from './pages/WhyChooseUs';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
+import ProjectDetail from './pages/ProjectDetail';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -61,6 +62,12 @@ const AppContent = ({ isLoading, setIsLoading }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [location.pathname, navigate, isBookModalOpen]);
 
+  useEffect(() => {
+    const handleOpenModal = () => setIsBookModalOpen(true);
+    window.addEventListener('open-book-modal', handleOpenModal);
+    return () => window.removeEventListener('open-book-modal', handleOpenModal);
+  }, []);
+
   return (
     <>
       <Loader onLoaded={() => setIsLoading(false)} />
@@ -78,6 +85,7 @@ const AppContent = ({ isLoading, setIsLoading }) => {
           <Route path="/why-us" element={<WhyChooseUs />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/projects/:projectId" element={<ProjectDetail />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

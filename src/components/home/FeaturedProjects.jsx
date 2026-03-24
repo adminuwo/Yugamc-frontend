@@ -61,7 +61,7 @@ const FeaturedProjects = () => {
               className="group"
             >
               <Link to={project.link}>
-                <div className="relative h-[450px] md:h-[600px] w-full mb-8 overflow-hidden rounded-2xl shadow-xl bg-white">
+                <div className="relative h-[300px] md:h-[400px] w-full mb-8 overflow-hidden rounded-2xl shadow-xl bg-white">
                   <img 
                     src={project.img} 
                     alt={project.title} 

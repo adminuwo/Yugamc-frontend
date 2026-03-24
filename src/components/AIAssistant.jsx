@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Sparkles, X, Send, MessageSquare, Check } from 'lucide-react';
+import { Sparkles, X, Send, MessageSquare, Check, Mic, MicOff } from 'lucide-react';
 import { useLenis } from 'lenis/react';
 import yugLogo from '../assets/yug logo.webp';
 
@@ -23,8 +23,62 @@ const AIAssistant = () => {
   
   const lenis = useLenis();
 
+  const messagesEndRef = useRef(null);
+  const recognitionRef = useRef(null);
+  const [isListening, setIsListening] = useState(false);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatHistory, isLoading]);
+
+  useEffect(() => {
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = true;
+      recognitionRef.current.interimResults = true;
+      recognitionRef.current.lang = 'en-IN'; // Defaults to English+Hindi
+
+      recognitionRef.current.onresult = (event) => {
+        let finalTranscript = '';
+        for (let i = 0; i < event.results.length; ++i) {
+          finalTranscript += event.results[i][0].transcript;
+        }
+        setMessage(finalTranscript);
+      };
+
+      recognitionRef.current.onerror = (event) => {
+        console.error('Speech recognition error', event.error);
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+    }
+  }, []);
+
+  const toggleListening = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+    } else {
+      setMessage('');
+      try {
+        recognitionRef.current?.start();
+        setIsListening(true);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
   // Scroll Lock and Persistence Check
-  React.useEffect(() => {
+  useEffect(() => {
     // Check registration
     const storedLead = localStorage.getItem('yug_chat_lead');
     if (storedLead) {
@@ -305,7 +359,7 @@ const AIAssistant = () => {
               ) : (
                 <>
                   {chatHistory.map((msg, i) => (
-                    <div key={i} className={`flex items-start gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
+                    <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex items-start gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
                       <div className={`w-8 h-8 shrink-0 bg-white rounded-full flex items-center justify-center border border-secondary overflow-hidden ${msg.role === 'user' ? 'bg-accent/10 border-none' : 'p-1'}`}>
                         {msg.role === 'model' ? <img src={yugLogo} alt="YUG" className="w-full h-full object-contain" /> : <MessageSquare size={14} className="text-accent" />}
                       </div>
@@ -316,7 +370,7 @@ const AIAssistant = () => {
                           msg.parts[0].text
                         )}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                   
                   {isLoading && (
@@ -351,6 +405,7 @@ const AIAssistant = () => {
                         ))}
                     </div>
                   </div>
+                  <div ref={messagesEndRef} />
                 </>
               )}
             </div>
@@ -360,19 +415,29 @@ const AIAssistant = () => {
               <div className="relative flex items-center">
                 <input
                   type="text"
-                  placeholder="Type your message..."
-                  className="w-full bg-primary/30 border border-secondary rounded-2xl py-4 pl-6 pr-14 outline-none focus:ring-1 focus:ring-accent transition-all text-sm md:text-base font-sans"
+                  placeholder={isListening ? "Listening..." : "Type your message..."}
+                  className="w-full bg-primary/30 border border-secondary rounded-2xl py-4 pl-6 pr-[80px] outline-none focus:ring-1 focus:ring-accent transition-all text-sm md:text-base font-sans"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   disabled={isLoading || !isRegistered}
                 />
-                <button 
-                  type="submit"
-                  disabled={isLoading || !message.trim() || !isRegistered}
-                  className="absolute right-2 p-3 bg-accent text-white rounded-xl shadow-lg shadow-accent/20 hover:scale-105 transition-transform disabled:opacity-50 disabled:hover:scale-100"
-                >
-                  <Send size={18} />
-                </button>
+                <div className="absolute right-2 flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={toggleListening}
+                    disabled={isLoading || !isRegistered}
+                    className={`p-3 rounded-xl transition-all flex items-center justify-center ${isListening ? 'bg-red-50 text-red-500 animate-pulse' : 'hover:bg-secondary/50 text-text/60 hover:text-accent'}`}
+                  >
+                    {isListening ? <MicOff size={18} /> : <Mic size={18} />}
+                  </button>
+                  <button 
+                    type="submit"
+                    disabled={isLoading || !message.trim() || !isRegistered}
+                    className="p-3 bg-accent text-white rounded-xl shadow-lg shadow-accent/20 hover:scale-105 transition-transform disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center"
+                  >
+                    <Send size={18} />
+                  </button>
+                </div>
               </div>
               <p className="text-[9px] text-center text-text/30 mt-4 tracking-widest uppercase">
                 Premium Real Estate Assistance • Jabalpur
