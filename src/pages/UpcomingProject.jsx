@@ -153,7 +153,7 @@ const UpcomingProject = () => {
             initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }} variants={staggerContainer}
             className="flex flex-col lg:flex-row items-center relative"
           >
-            <motion.div className="w-full lg:w-[65%] relative group h-[250px] md:h-[350px] lg:-ml-12 rounded-[30px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] z-10">
+            <motion.div className="w-full lg:w-[65%] relative group h-[350px] md:h-[450px] lg:h-[520px] lg:-ml-12 rounded-[30px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] z-10">
               <motion.img 
                 variants={cinematicImageReveal} src={elevation_1_3} alt="Exterior View" 
                 className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-[2s] ease-out will-change-transform"
@@ -200,7 +200,7 @@ const UpcomingProject = () => {
               </div>
             </motion.div>
 
-            <motion.div className="w-full lg:w-[65%] relative group h-[250px] md:h-[350px] lg:-mr-12 rounded-[30px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] z-10">
+            <motion.div className="w-full lg:w-[65%] relative group h-[350px] md:h-[450px] lg:h-[520px] lg:-mr-12 rounded-[30px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] z-10">
               <motion.img 
                 variants={cinematicImageReveal} src={retail_plaza} alt="Retail Experience" 
                 className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-[2s] ease-out will-change-transform"
@@ -249,7 +249,7 @@ const UpcomingProject = () => {
             initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }} variants={staggerContainer}
             className="flex flex-col lg:flex-row items-center relative"
           >
-            <motion.div className="w-full lg:w-[65%] relative group h-[250px] md:h-[350px] lg:-ml-12 rounded-[30px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] z-10">
+            <motion.div className="w-full lg:w-[65%] relative group h-[350px] md:h-[450px] lg:h-[520px] lg:-ml-12 rounded-[30px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] z-10">
               <motion.img 
                 variants={cinematicImageReveal} src={hotel_drop_off} alt="Hotel Luxury" 
                 className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-[2s] ease-out will-change-transform"
