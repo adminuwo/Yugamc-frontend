@@ -38,15 +38,15 @@ const UpcomingHighlight = () => {
             <h2 className="text-6xl md:text-8xl font-serif text-text mb-10 leading-[0.9] tracking-tighter">
               City <br /> <span className="italic font-light text-accent">Plaza.</span>
             </h2>
-            <p className="text-xl text-text/60 font-sans leading-relaxed mb-12 font-light max-w-lg">
+            <p className="text-xl text-text font-bold font-sans leading-relaxed mb-12 max-w-lg">
               Designing the future of commercial spaces in Jabalpur. City Plaza is set to be the city's most iconic retail and business destination, combining avant-garde architecture with prime connectivity.
             </p>
             <div className="flex flex-col sm:flex-row gap-10">
-               <Link to="/upcoming" className="group flex items-center gap-4 text-xs font-sans tracking-[0.3em] uppercase text-text/40 hover:text-accent transition-colors duration-500">
+               <Link to="/upcoming" className="group flex items-center gap-4 text-xs font-sans tracking-[0.3em] uppercase text-text font-bold hover:text-accent transition-colors duration-500">
                  Explore Opportunity
                  <div className="w-8 h-[1px] bg-text/20 group-hover:bg-accent group-hover:w-12 transition-all duration-500"></div>
                </Link>
-               <Link to="/contact" className="group flex items-center gap-4 text-xs font-sans tracking-[0.3em] uppercase text-text/40 hover:text-accent transition-colors duration-500">
+               <Link to="/contact" className="group flex items-center gap-4 text-xs font-sans tracking-[0.3em] uppercase text-text font-bold hover:text-accent transition-colors duration-500">
                  Book Space
                  <div className="w-8 h-[1px] bg-text/20 group-hover:bg-accent group-hover:w-12 transition-all duration-500"></div>
                </Link>

@@ -69,14 +69,14 @@ export const projectsData = [
   },
   {
     id: "satguru-city-mall",
-    name: "Satguru City Mall",
+    name: "Satguru City Mall (Coming Soon)",
     location: "Tilhari, Jabalpur",
     year: "In Progress",
     status: "Ongoing",
     type: "Commercial",
     description: "An upcoming grand shopping and entertainment destination destined to become the new pulse of Tilhari.",
     highlights: ["Retail Spaces", "Entertainment Zones", "Food Courts"],
-    images: [naivedyam_comm, elevation_1_2]
+    images: [elevation_1_2, naivedyam_comm]
   },
   {
     id: "currency-tower",
@@ -91,7 +91,7 @@ export const projectsData = [
   },
   {
     id: "logistic-park",
-    name: "Logistic Park",
+    name: "Logistic Park (Coming Soon)",
     location: "Nigri, Bargi",
     year: "Upcoming",
     status: "Upcoming",

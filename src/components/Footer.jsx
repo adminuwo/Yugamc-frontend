@@ -71,7 +71,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#f1ede7] text-[#444] pt-24 pb-12 overflow-hidden border-t border-black/10">
+    <footer className="bg-[#f1ede7] text-black font-bold pt-24 pb-12 overflow-hidden border-t border-black/10">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 mb-20">
           {/* Column 1: Brand info */}
@@ -83,11 +83,11 @@ const Footer = () => {
                 className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
               />
               <span className="text-3xl font-serif font-bold text-black">
-                YUG<span className="text-accent">AMC</span>
+                Yug<span className="text-accent">AMC</span>
               </span>
             </Link>
-            <p className="text-[#444] font-sans leading-relaxed max-w-sm">
-              At YUGAMC, we don't just develop properties — we create spaces where life grows, businesses thrive, and investments multiply. Driven by trust, precision, and modern lifestyles.
+            <p className="text-black font-bold font-sans leading-relaxed max-w-sm">
+              At YugAMC, we don't just develop properties — we create spaces where life grows, businesses thrive, and investments multiply. Driven by trust, precision, and modern lifestyles.
             </p>
             
             {/* Social Icons - Premium Style */}
@@ -109,7 +109,7 @@ const Footer = () => {
                   className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center transition-all duration-300 group"
                   aria-label={social.label}
                 >
-                  <social.icon size={20} className="text-[#444] group-hover:text-white transition-colors duration-300" />
+                  <social.icon size={20} className="text-black group-hover:text-white transition-colors duration-300" />
                 </motion.a>
               ))}
             </div>
@@ -163,7 +163,7 @@ const Footer = () => {
         </div>
         
         {/* Bottom Section with separator */}
-        <div className="border-t border-black/[0.08] pt-10 flex flex-col md:flex-row justify-between items-center text-[13px] text-[#444]/50 font-sans tracking-wide">
+        <div className="border-t border-black/[0.08] pt-10 flex flex-col md:flex-row justify-between items-center text-[13px] text-black font-bold font-sans tracking-wide">
           <p>&copy; {new Date().getFullYear()} YUG Asset Management Company. All rights reserved.</p>
           <div className="mt-6 md:mt-0 flex space-x-10">
             <Link to="/privacy-policy" className="hover:text-accent transition-colors duration-300">Privacy Policy</Link>

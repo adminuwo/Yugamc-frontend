@@ -121,7 +121,7 @@ const Gallery = () => {
           <h1 className="text-6xl md:text-9xl font-serif text-text mb-8 leading-none tracking-tighter">
             Aesthetic <span className="italic font-light text-accent">Realities.</span>
           </h1>
-          <p className="text-text/40 font-sans tracking-[0.2em] uppercase text-[10px] max-w-lg mx-auto border-t border-text/10 pt-8 mt-8">Where architectural vision meets impeccable delivery.</p>
+          <p className="text-text font-bold font-sans tracking-[0.2em] uppercase text-[10px] max-w-lg mx-auto border-t border-text/10 pt-8 mt-8">Where architectural vision meets impeccable delivery.</p>
         </motion.div>
       </div>
 
@@ -156,7 +156,7 @@ const Gallery = () => {
                     className={`w-full text-left px-6 py-3 pl-8 text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 border-l-2 ${
                       activeTab === cat 
                         ? 'border-accent bg-accent/5 text-accent font-bold' 
-                        : 'border-transparent text-text/70 hover:bg-black/5 hover:text-text'
+                        : 'border-transparent text-text font-bold hover:bg-black/5 hover:text-text'
                     }`}
                   >
                     {cat}
@@ -175,7 +175,7 @@ const Gallery = () => {
               onClick={() => setActiveTab(cat)}
               className="relative px-8 py-4 transition-all duration-500 group"
             >
-              <span className={`relative z-10 font-sans text-[11px] tracking-[0.2em] uppercase transition-colors duration-500 ${activeTab === cat ? 'text-white' : 'text-text/50 group-hover:text-text'}`}>
+              <span className={`relative z-10 font-sans text-[11px] tracking-[0.2em] uppercase transition-colors duration-500 ${activeTab === cat ? 'text-white' : 'text-text font-bold group-hover:text-text'}`}>
                 {cat}
               </span>
               {activeTab === cat && (

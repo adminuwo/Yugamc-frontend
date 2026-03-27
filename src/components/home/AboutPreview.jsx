@@ -20,10 +20,10 @@ const AboutPreview = () => {
               More Than <span className="italic font-light">Construction.</span> <br /> 
               We Build <span className="text-accent">Trust.</span>
             </h2>
-            <p className="text-lg text-text/60 font-sans leading-relaxed mb-10 font-light max-w-xl">
+            <p className="text-lg text-text font-bold font-sans leading-relaxed mb-10 font-light max-w-xl">
               With over a decade of experience, we don’t just create buildings; we create landmarks that define the spirit of Jabalpur. Every brick we lay is a testament to our commitment to quality.
             </p>
-            <Link to="/about" className="group flex items-center gap-4 text-xs font-sans tracking-[0.3em] uppercase text-text/40 hover:text-accent transition-colors duration-500">
+            <Link to="/about" className="group flex items-center gap-4 text-xs font-sans tracking-[0.3em] uppercase text-text font-bold hover:text-accent transition-colors duration-500">
                Know Our Story
                <div className="w-10 h-px bg-text/20 group-hover:bg-accent group-hover:w-16 transition-all duration-500"></div>
             </Link>

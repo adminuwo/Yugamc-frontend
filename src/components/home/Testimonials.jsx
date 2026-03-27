@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 const Testimonials = () => {
   const reviews = [
     {
-      text: "YUGAMC delivered exactly what they promised — quality, design, and timely possession. A premium experience from start to finish.",
+      text: "YugAMC delivered exactly what they promised — quality, design, and timely possession. A premium experience from start to finish.",
       author: "Happy Homebuyer",
       role: "Yash Heights Resident"
     },
     {
-      text: "Investing with YUGAMC was one of the best decisions for our business. The transparency and strategic focus are unmatched.",
+      text: "Investing with YugAMC was one of the best decisions for our business. The transparency and strategic focus are unmatched.",
       author: "Commercial Investor",
       role: "Investor, City Plaza"
     }
@@ -31,8 +31,8 @@ const Testimonials = () => {
               Spaces That Reflect<br/>
               <span className="italic font-light">Your Lifestyle</span>
             </h2>
-            <p className="text-text/70 text-lg font-sans max-w-md leading-relaxed">
-              Whether it's a home filled with comfort or a commercial space built for growth, YUGAMC creates environments that match your aspirations.
+            <p className="text-text font-bold text-lg font-sans max-w-md leading-relaxed">
+              Whether it's a home filled with comfort or a commercial space built for growth, YugAMC creates environments that match your aspirations.
             </p>
           </motion.div>
 
@@ -51,10 +51,10 @@ const Testimonials = () => {
                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                    </svg>
                 </div>
-                <p className="text-xl font-serif text-text/90 italic mb-6 relative z-10 leading-relaxed">"{review.text}"</p>
+                <p className="text-xl font-serif text-text font-bold italic mb-6 relative z-10 leading-relaxed">"{review.text}"</p>
                 <div>
                   <h4 className="font-sans font-semibold text-text">{review.author}</h4>
-                  <span className="text-sm font-sans text-text/60">{review.role}</span>
+                  <span className="text-sm font-sans text-text font-bold">{review.role}</span>
                 </div>
               </motion.div>
             ))}

@@ -67,7 +67,7 @@ const WhyChooseUs = () => {
           </motion.span>
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-text leading-tight">
-            {["The", "YUGAMC", "Advantage"].map((word, i) => (
+            {["The", "YugAMC", "Advantage"].map((word, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
@@ -161,10 +161,10 @@ const WhyChooseUs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-lg md:text-xl text-text/70 font-sans leading-relaxed max-w-[700px] text-center"
+            className="text-lg md:text-xl text-text font-bold font-sans leading-relaxed max-w-[700px] text-center"
 
           >
-            Our core philosophy revolves around ensuring that your hard-earned investment yields spaces that transcend time. With meticulous planning, top-tier build quality, and an unwavering commitment to transparency, every YUGAMC project stands as a testament to perfection.
+            Our core philosophy revolves around ensuring that your hard-earned investment yields spaces that transcend time. With meticulous planning, top-tier build quality, and an unwavering commitment to transparency, every YugAMC project stands as a testament to perfection.
           </motion.p>
         </div>
       </section>

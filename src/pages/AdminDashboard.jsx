@@ -239,30 +239,30 @@ const AdminDashboard = () => {
                         <div className="flex bg-white p-1 rounded-xl shadow-sm border border-secondary/50 flex-1 md:flex-none">
                             <button 
                                 onClick={() => setActiveTab('enquiries')}
-                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'enquiries' ? 'bg-accent text-white' : 'text-text/40'}`}
+                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'enquiries' ? 'bg-accent text-white' : 'text-text font-bold'}`}
                             >
                                 User Entries
                             </button>
                             <button 
                                 onClick={() => setActiveTab('chat_leads')}
-                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'chat_leads' ? 'bg-accent text-white' : 'text-text/40'}`}
+                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'chat_leads' ? 'bg-accent text-white' : 'text-text font-bold'}`}
                             >
                                 Chat Leads
                             </button>
                             <button 
                                 onClick={() => setActiveTab('site_visits')}
-                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'site_visits' ? 'bg-accent text-white' : 'text-text/40'}`}
+                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'site_visits' ? 'bg-accent text-white' : 'text-text font-bold'}`}
                             >
                                 Site Visits
                             </button>
                             <button 
                                 onClick={() => setActiveTab('training')}
-                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'training' ? 'bg-accent text-white' : 'text-text/40'}`}
+                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 md:flex-none ${activeTab === 'training' ? 'bg-accent text-white' : 'text-text font-bold'}`}
                             >
                                 AI Training
                             </button>
                         </div>
-                        <button onClick={handleLogout} className="p-3 bg-white border border-secondary/50 rounded-xl text-text/40 hover:text-red-500 transition-all shadow-sm">
+                        <button onClick={handleLogout} className="p-3 bg-white border border-secondary/50 rounded-xl text-text font-bold hover:text-red-500 transition-all shadow-sm">
                             <LogOut size={20} />
                         </button>
                     </div>
@@ -280,7 +280,7 @@ const AdminDashboard = () => {
                         {/* Simple Search */}
                         <div className="bg-white p-4 rounded-2xl border border-secondary flex flex-wrap gap-4 shadow-sm mb-6">
                             <div className="relative flex-1">
-                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text/30" size={16} />
+                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text font-bold" size={16} />
                                 <input 
                                     type="text" 
                                     placeholder="Naam ya Email se search karein..." 
@@ -307,33 +307,33 @@ const AdminDashboard = () => {
                                 <table className="w-full text-left">
                                     <thead className="bg-primary/30 border-b border-secondary">
                                         <tr>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Custoer Ka Naam</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Jarurat</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Project</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Tarikh</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50 text-right">Action</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Custoer Ka Naam</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Jarurat</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Project</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Tarikh</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-secondary/50">
                                         {filteredEnquiries.length === 0 ? (
-                                            <tr><td colSpan="5" className="px-6 py-10 text-center text-text/30 italic">Abhi koi entry nahi hai.</td></tr>
+                                            <tr><td colSpan="5" className="px-6 py-10 text-center text-text font-bold italic">Abhi koi entry nahi hai.</td></tr>
                                         ) : (
                                             filteredEnquiries.map((lead) => (
                                                 <tr key={lead.id} className="hover:bg-primary/10 group">
                                                     <td className="px-6 py-4">
                                                         <div className="font-bold text-sm">{lead.name}</div>
-                                                        <div className="text-[10px] text-text/30">{lead.email}</div>
+                                                        <div className="text-[10px] text-text font-bold">{lead.email}</div>
                                                     </td>
                                                     <td className="px-6 py-4">
                                                         <span className="text-[10px] font-bold uppercase px-2 py-1 bg-secondary rounded-lg">
                                                             {lead.requirement}
                                                         </span>
                                                     </td>
-                                                    <td className="px-6 py-4 text-xs text-text/60">{lead.project || '-'}</td>
-                                                    <td className="px-6 py-4 text-xs text-text/30">{new Date(lead.timestamp).toLocaleDateString()}</td>
+                                                    <td className="px-6 py-4 text-xs text-text font-bold">{lead.project || '-'}</td>
+                                                    <td className="px-6 py-4 text-xs text-text font-bold">{new Date(lead.timestamp).toLocaleDateString()}</td>
                                                     <td className="px-6 py-4 text-right">
                                                         <div className="flex justify-end gap-2">
-                                                            <button onClick={() => setSelectedEnquiry(lead)} className="p-2 text-text/30 hover:text-accent group-hover:scale-110 transition-transform"><Eye size={16} /></button>
+                                                            <button onClick={() => setSelectedEnquiry(lead)} className="p-2 text-text font-bold hover:text-accent group-hover:scale-110 transition-transform"><Eye size={16} /></button>
                                                             <button onClick={() => handleDeleteEnquiry(lead.id)} className="p-2 text-red-300 hover:text-red-500 group-hover:scale-110 transition-transform"><Trash2 size={16} /></button>
                                                         </div>
                                                     </td>
@@ -366,34 +366,34 @@ const AdminDashboard = () => {
                                 <table className="w-full text-left">
                                     <thead className="bg-primary/30 border-b border-secondary">
                                         <tr>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Lead Info</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Reg. Date</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Messages</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50 text-right">Action</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Lead Info</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Reg. Date</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Messages</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-secondary/50">
                                         {chatLeads.length === 0 ? (
-                                            <tr><td colSpan="4" className="px-6 py-10 text-center text-text/30 italic">Abhi koi chat lead nahi hai.</td></tr>
+                                            <tr><td colSpan="4" className="px-6 py-10 text-center text-text font-bold italic">Abhi koi chat lead nahi hai.</td></tr>
                                         ) : (
                                             chatLeads.map((lead) => (
                                                 <tr key={lead._id} className="hover:bg-primary/10 group">
                                                     <td className="px-6 py-4">
                                                         <div className="font-bold text-sm">{lead.name}</div>
-                                                        <div className="text-[10px] text-text/30">{lead.email}</div>
+                                                        <div className="text-[10px] text-text font-bold">{lead.email}</div>
                                                     </td>
-                                                    <td className="px-6 py-4 text-xs text-text/30">
+                                                    <td className="px-6 py-4 text-xs text-text font-bold">
                                                         {new Date(lead.timestamp).toLocaleString()}
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded-lg ${lead.messages.length > 0 ? 'bg-green-50 text-green-600' : 'bg-secondary text-text/30'}`}>
+                                                        <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded-lg ${lead.messages.length > 0 ? 'bg-green-50 text-green-600' : 'bg-secondary text-text font-bold'}`}>
                                                             {lead.messages.length} Msgs
                                                         </span>
                                                     </td>
                                                     <td className="px-6 py-4 text-right">
                                                         <button 
                                                             onClick={() => setSelectedChatLead(lead)}
-                                                            className="p-2 text-text/30 hover:text-accent transition-all"
+                                                            className="p-2 text-text font-bold hover:text-accent transition-all"
                                                         >
                                                             <MessageSquare size={16} />
                                                         </button>
@@ -419,37 +419,37 @@ const AdminDashboard = () => {
                                 <table className="w-full text-left">
                                     <thead className="bg-primary/30 border-b border-secondary">
                                         <tr>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Customer Info</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Location / Budget</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Visit Slot</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50">Booked On</th>
-                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text/50 text-right">Action</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Customer Info</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Location / Budget</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Visit Slot</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold">Booked On</th>
+                                            <th className="px-6 py-4 text-xs font-bold uppercase text-text font-bold text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-secondary/50">
                                         {siteVisits.length === 0 ? (
-                                            <tr><td colSpan="5" className="px-6 py-10 text-center text-text/30 italic">Abhi koi booking nahi hai.</td></tr>
+                                            <tr><td colSpan="5" className="px-6 py-10 text-center text-text font-bold italic">Abhi koi booking nahi hai.</td></tr>
                                         ) : (
                                             siteVisits.map((visit) => (
                                                 <tr key={visit._id} className="hover:bg-primary/10 group">
                                                     <td className="px-6 py-4">
                                                         <div className="font-bold text-sm">{visit.name}</div>
-                                                        <div className="text-[10px] text-text/30">{visit.phone}</div>
+                                                        <div className="text-[10px] text-text font-bold">{visit.phone}</div>
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        <div className="text-xs font-medium text-text/80">{visit.location}</div>
+                                                        <div className="text-xs font-medium text-text font-bold">{visit.location}</div>
                                                         <div className="text-[10px] text-accent font-bold uppercase">{visit.budget}</div>
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        <div className="text-xs font-bold text-text/80">{new Date(visit.visitDate).toLocaleDateString('en-GB')}</div>
-                                                        <div className="text-[10px] text-text/40 uppercase">{visit.timeSlot}</div>
+                                                        <div className="text-xs font-bold text-text font-bold">{new Date(visit.visitDate).toLocaleDateString('en-GB')}</div>
+                                                        <div className="text-[10px] text-text font-bold uppercase">{visit.timeSlot}</div>
                                                     </td>
-                                                    <td className="px-6 py-4 text-xs text-text/30">
+                                                    <td className="px-6 py-4 text-xs text-text font-bold">
                                                         {new Date(visit.timestamp).toLocaleDateString()}
                                                     </td>
                                                     <td className="px-6 py-4 text-right">
                                                         <div className="flex justify-end gap-2">
-                                                            <button onClick={() => setSelectedSiteVisit(visit)} className="p-2 text-text/30 hover:text-accent group-hover:scale-110 transition-transform"><Eye size={16} /></button>
+                                                            <button onClick={() => setSelectedSiteVisit(visit)} className="p-2 text-text font-bold hover:text-accent group-hover:scale-110 transition-transform"><Eye size={16} /></button>
                                                             <button onClick={() => handleDeleteSiteVisit(visit._id)} className="p-2 text-red-300 hover:text-red-500 group-hover:scale-110 transition-transform"><Trash2 size={16} /></button>
                                                         </div>
                                                     </td>
@@ -478,8 +478,8 @@ const AdminDashboard = () => {
                                     <div className="w-16 h-16 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                                         <Plus size={32} />
                                     </div>
-                                    <span className="text-sm font-bold block text-text/60">PDF, Word ya Text file select karein</span>
-                                    <p className="text-[10px] text-text/30 mt-2 uppercase tracking-widest font-bold">Yaha click karein</p>
+                                    <span className="text-sm font-bold block text-text font-bold">PDF, Word ya Text file select karein</span>
+                                    <p className="text-[10px] text-text font-bold mt-2 uppercase tracking-widest font-bold">Yaha click karein</p>
                                 </label>
                             ) : (
                                 <div className="space-y-4">
@@ -507,7 +507,7 @@ const AdminDashboard = () => {
                                         <button 
                                             onClick={handleUpload}
                                             disabled={isUploading}
-                                            className={`w-full py-5 rounded-2xl font-bold text-sm uppercase tracking-[0.2em] flex items-center justify-center gap-3 transition-all ${isUploading ? 'bg-secondary text-text/30' : 'bg-text text-white hover:bg-accent shadow-xl active:scale-[0.98]'}`}
+                                            className={`w-full py-5 rounded-2xl font-bold text-sm uppercase tracking-[0.2em] flex items-center justify-center gap-3 transition-all ${isUploading ? 'bg-secondary text-text font-bold' : 'bg-text text-white hover:bg-accent shadow-xl active:scale-[0.98]'}`}
                                         >
                                             {isUploading ? (
                                                 <>
@@ -535,7 +535,7 @@ const AdminDashboard = () => {
                             <div className="space-y-3">
                                 {files.length === 0 ? (
                                     <div className="p-10 text-center border border-dashed border-secondary/30 rounded-2xl">
-                                        <p className="text-sm text-text/30 italic">Abhi ko data nahi sikhaya gaya hai.</p>
+                                        <p className="text-sm text-text font-bold italic">Abhi ko data nahi sikhaya gaya hai.</p>
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -547,7 +547,7 @@ const AdminDashboard = () => {
                                                     </div>
                                                     <div className="overflow-hidden">
                                                         <span className="text-[11px] font-bold truncate block">{f.name}</span>
-                                                        <span className="text-[9px] text-text/30 uppercase font-bold">Sikhaya Gaya hai</span>
+                                                        <span className="text-[9px] text-text font-bold uppercase font-bold">Sikhaya Gaya hai</span>
                                                     </div>
                                                 </div>
                                                 <button onClick={() => handleDeleteFile(f.name)} className="p-2 text-red-200 hover:text-red-500 transition-all group-hover:scale-110"><Trash2 size={16} /></button>
@@ -569,29 +569,29 @@ const AdminDashboard = () => {
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-2xl" />
                                 <div className="flex justify-between items-start mb-8 relative z-10">
                                     <h3 className="text-2xl font-serif font-bold">Inquiry Details</h3>
-                                    <button onClick={() => setSelectedEnquiry(null)} className="p-1 hover:bg-primary rounded-full transition-colors"><X size={24} className="text-text/30" /></button>
+                                    <button onClick={() => setSelectedEnquiry(null)} className="p-1 hover:bg-primary rounded-full transition-colors"><X size={24} className="text-text font-bold" /></button>
                                 </div>
                                 <div className="space-y-4 mb-8 relative z-10">
                                     <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
-                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Customer Naam</p>
+                                        <p className="text-[10px] uppercase font-bold text-text font-bold mb-1 tracking-widest">Customer Naam</p>
                                         <p className="font-bold text-text">{selectedEnquiry.name}</p>
                                     </div>
                                     <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
-                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Mobile No.</p>
+                                        <p className="text-[10px] uppercase font-bold text-text font-bold mb-1 tracking-widest">Mobile No.</p>
                                         <p className="font-bold text-text">{selectedEnquiry.phone}</p>
                                     </div>
                                     <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
-                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Email</p>
+                                        <p className="text-[10px] uppercase font-bold text-text font-bold mb-1 tracking-widest">Email</p>
                                         <p className="font-bold text-text">{selectedEnquiry.email}</p>
                                     </div>
                                     <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
-                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Sodesh (Message)</p>
-                                        <p className="text-sm italic text-text/70">"{selectedEnquiry.message || 'No message provided'}"</p>
+                                        <p className="text-[10px] uppercase font-bold text-text font-bold mb-1 tracking-widest">Sodesh (Message)</p>
+                                        <p className="text-sm italic text-text font-bold">"{selectedEnquiry.message || 'No message provided'}"</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-3 relative z-10">
                                     <a href={`tel:${selectedEnquiry.phone}`} className="flex-1 bg-text text-white py-5 rounded-2xl text-center font-bold text-xs uppercase tracking-widest hover:bg-accent transition-all shadow-lg">Phone Karein</a>
-                                    <a href={`mailto:${selectedEnquiry.email}`} className="flex-1 bg-secondary text-text/60 py-5 rounded-2xl text-center font-bold text-xs uppercase tracking-widest hover:border-accent hover:text-accent transition-all">Email Karein</a>
+                                    <a href={`mailto:${selectedEnquiry.email}`} className="flex-1 bg-secondary text-text font-bold py-5 rounded-2xl text-center font-bold text-xs uppercase tracking-widest hover:border-accent hover:text-accent transition-all">Email Karein</a>
                                 </div>
                             </motion.div>
                         </div>
@@ -607,18 +607,18 @@ const AdminDashboard = () => {
                                 <div className="p-6 border-b border-secondary flex justify-between items-center bg-primary/30">
                                     <div>
                                         <h3 className="text-xl font-serif font-bold">{selectedChatLead.name}</h3>
-                                        <p className="text-[10px] text-text/40 font-bold uppercase tracking-wider">{selectedChatLead.email}</p>
+                                        <p className="text-[10px] text-text font-bold font-bold uppercase tracking-wider">{selectedChatLead.email}</p>
                                     </div>
                                     <button onClick={() => setSelectedChatLead(null)} className="p-2 hover:bg-white rounded-full transition-colors"><X size={20} /></button>
                                 </div>
                                 
                                 <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-[#F9FAFB]">
                                     {selectedChatLead.messages.length === 0 ? (
-                                        <div className="h-full flex items-center justify-center text-text/30 italic text-sm">No messages yet.</div>
+                                        <div className="h-full flex items-center justify-center text-text font-bold italic text-sm">No messages yet.</div>
                                     ) : (
                                         selectedChatLead.messages.map((m, i) => (
                                             <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                                <div className={`max-w-[80%] p-4 rounded-2xl text-sm leading-relaxed ${m.role === 'user' ? 'bg-accent text-white rounded-tr-none' : 'bg-white border border-secondary rounded-tl-none shadow-sm text-text/80'}`}>
+                                                <div className={`max-w-[80%] p-4 rounded-2xl text-sm leading-relaxed ${m.role === 'user' ? 'bg-accent text-white rounded-tr-none' : 'bg-white border border-secondary rounded-tl-none shadow-sm text-text font-bold'}`}>
                                                     <div className="flex justify-between gap-4 mb-1 opacity-50 font-bold uppercase text-[8px]">
                                                         <span>{m.role === 'user' ? 'Customer' : 'AI Assistant'}</span>
                                                         <span>{new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
@@ -630,7 +630,7 @@ const AdminDashboard = () => {
                                     )}
                                 </div>
                                 <div className="p-6 border-t border-secondary bg-white text-center">
-                                    <p className="text-[9px] text-text/30 font-bold uppercase tracking-[0.2em]">YUG AMC Chat Intelligence</p>
+                                    <p className="text-[9px] text-text font-bold font-bold uppercase tracking-[0.2em]">YUG AMC Chat Intelligence</p>
                                 </div>
                             </motion.div>
                         </div>
@@ -645,28 +645,28 @@ const AdminDashboard = () => {
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-2xl" />
                                 <div className="flex justify-between items-start mb-8 relative z-10">
                                     <h3 className="text-2xl font-serif font-bold">Booking Details</h3>
-                                    <button onClick={() => setSelectedSiteVisit(null)} className="p-1 hover:bg-primary rounded-full transition-colors"><X size={24} className="text-text/30" /></button>
+                                    <button onClick={() => setSelectedSiteVisit(null)} className="p-1 hover:bg-primary rounded-full transition-colors"><X size={24} className="text-text font-bold" /></button>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4 mb-8 relative z-10">
                                     <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50 col-span-2">
-                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Customer</p>
+                                        <p className="text-[10px] uppercase font-bold text-text font-bold mb-1 tracking-widest">Customer</p>
                                         <p className="font-bold text-text">{selectedSiteVisit.name}</p>
-                                        <p className="text-xs text-text/60">{selectedSiteVisit.email}</p>
+                                        <p className="text-xs text-text font-bold">{selectedSiteVisit.email}</p>
                                     </div>
                                     <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
-                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Phone</p>
+                                        <p className="text-[10px] uppercase font-bold text-text font-bold mb-1 tracking-widest">Phone</p>
                                         <p className="font-bold text-text">{selectedSiteVisit.phone}</p>
                                     </div>
                                     <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
-                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Location</p>
+                                        <p className="text-[10px] uppercase font-bold text-text font-bold mb-1 tracking-widest">Location</p>
                                         <p className="font-bold text-text">{selectedSiteVisit.location}</p>
                                     </div>
                                     <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
-                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Date</p>
+                                        <p className="text-[10px] uppercase font-bold text-text font-bold mb-1 tracking-widest">Date</p>
                                         <p className="font-bold text-text">{new Date(selectedSiteVisit.visitDate).toLocaleDateString('en-GB')}</p>
                                     </div>
                                     <div className="p-4 bg-primary/30 rounded-2xl border border-secondary/50">
-                                        <p className="text-[10px] uppercase font-bold text-text/30 mb-1 tracking-widest">Time Slot</p>
+                                        <p className="text-[10px] uppercase font-bold text-text font-bold mb-1 tracking-widest">Time Slot</p>
                                         <p className="font-bold text-text">{selectedSiteVisit.timeSlot}</p>
                                     </div>
                                     <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 col-span-2">

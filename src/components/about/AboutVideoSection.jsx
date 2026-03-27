@@ -50,7 +50,7 @@ const AboutVideoSection = () => {
             className="w-full md:w-5/12 lg:w-4/12 order-1 pr-0 lg:pr-8"
           >
             <span className="text-accent tracking-[0.3em] text-[10px] uppercase font-bold mb-4 block">
-              The YUGAMC Standard
+              The YugAMC Standard
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-text mb-6 leading-[1.2]">
               Building Trust. <br/>

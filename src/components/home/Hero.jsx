@@ -3,14 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar } from 'lucide-react';
 import h1 from '../../assets/h1.avif';
-import h2 from '../../assets/h2.webp';
 import h3 from '../../assets/h3.avif';
-import h4 from '../../assets/h4.webp';
 import h5 from '../../assets/h5.jpg';
 import h6 from '../../assets/h6.jpg';
 import h8 from '../../assets/h8.webp';
 
-const images = [h8, h6, h5, h1, h3, h4, h2];
+const images = [h8, h6, h5, h1, h3];
 
 const Hero = ({ onBookVisit }) => {
   const [currentImage, setCurrentImage] = React.useState(0);
@@ -56,7 +54,7 @@ const Hero = ({ onBookVisit }) => {
            transition={{ duration: 1, delay: 0.5 }}
            className="mb-8"
         >
-          <span className="text-text/60 font-sans tracking-[0.5em] uppercase text-[10px] border-b border-text/10 pb-2">
+          <span className="text-text font-bold font-sans tracking-[0.5em] uppercase text-[10px] border-b border-text/10 pb-2">
             Luxury Real Estate · Since 2014
           </span>
         </motion.div>
@@ -77,7 +75,7 @@ const Hero = ({ onBookVisit }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="text-lg md:text-xl text-text/70 font-sans max-w-2xl mb-12 font-light tracking-wide"
+          className="text-lg md:text-xl text-text font-bold font-sans max-w-2xl mb-12 font-light tracking-wide"
         >
           Redefining the skyline of Jabalpur with architectural excellence and uncompromising luxury.
         </motion.p>
@@ -113,7 +111,7 @@ const Hero = ({ onBookVisit }) => {
           transition={{ delay: 2, duration: 1 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6"
         >
-          <span className="text-[9px] text-text/30 font-sans tracking-[0.4em] uppercase">Scroll to explore</span>
+          <span className="text-[9px] text-text font-bold font-sans tracking-[0.4em] uppercase">Scroll to explore</span>
           <div className="w-px h-20 bg-gradient-to-b from-accent to-transparent relative overflow-hidden">
              <motion.div 
                animate={{ y: ["-100%", "100%"] }}

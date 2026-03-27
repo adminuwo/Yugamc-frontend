@@ -83,7 +83,7 @@ const UpcomingProject = () => {
   };
 
   return (
-    <div className="bg-[#f8f6f2] text-[#2B2B2B] min-h-screen overflow-x-hidden selection:bg-[#c47a5a] selection:text-[#f8f6f2] font-sans">
+    <div className="bg-[#f8f6f2] text-text font-bold min-h-screen overflow-x-hidden selection:bg-[#c47a5a] selection:text-[#f8f6f2] font-sans">
       <LightNoiseOverlay />
       
       {/* Scroll Progress Bar */}
@@ -111,7 +111,7 @@ const UpcomingProject = () => {
         <motion.div variants={revealVariants.splitRight} initial="initial" animate="animate" className="absolute inset-y-0 right-0 w-1/2 z-30 bg-[#f8f6f2] border-l border-[#c47a5a]/20 shadow-[-20px_0_50px_rgba(0,0,0,0.05)]" />
         
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
-          <motion.h1 variants={revealVariants.introText} initial="initial" animate="animate" className="text-4xl md:text-6xl lg:text-7xl font-serif tracking-widest text-center text-[#2B2B2B]">
+          <motion.h1 variants={revealVariants.introText} initial="initial" animate="animate" className="text-4xl md:text-6xl lg:text-7xl font-serif tracking-widest text-center text-text font-bold">
             Introducing <br className="md:hidden" />
             <span className="italic font-light text-[#c47a5a]">City Plaza</span>
           </motion.h1>
@@ -130,17 +130,17 @@ const UpcomingProject = () => {
           >
             The Crown Jewel of Jabalpur
           </motion.span>
-          <motion.h1 className="mb-10 text-[#2B2B2B]">
+          <motion.h1 className="mb-10 text-text font-bold">
             <motion.span variants={textFadeUp} className="block text-3xl md:text-5xl lg:text-7xl font-serif font-bold leading-tight mb-2 drop-shadow-[0_2px_15px_rgba(255,255,255,0.9)]">
               A New Landmark for
             </motion.span>
             <motion.span variants={textFadeUp} className="block text-4xl md:text-6xl lg:text-[7rem] font-serif italic leading-[1.1] md:leading-none py-4">
-              <span className="text-[#1A1A1A] font-bold">Business</span>{' '}
-              <span className="text-[#1A1A1A] font-normal">&</span>{' '}
-              <span className="text-[#1A1A1A] font-bold drop-shadow-[0_4px_25px_rgba(255,255,255,0.9)]">Growth</span>
+              <span className="text-text font-bold">Business</span>{' '}
+              <span className="text-text font-bold">&</span>{' '}
+              <span className="text-text font-bold drop-shadow-[0_4px_25px_rgba(255,255,255,0.9)]">Growth</span>
             </motion.span>
           </motion.h1>
-          <motion.p variants={textFadeUp} className="text-[#3a3a3a] text-lg md:text-2xl font-light max-w-3xl mx-auto leading-relaxed bg-white/40 backdrop-blur-xl border border-white p-8 md:p-12 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]">
+          <motion.p variants={textFadeUp} className="text-text font-bold text-lg md:text-2xl font-light max-w-3xl mx-auto leading-relaxed bg-white/40 backdrop-blur-xl border border-white p-8 md:p-12 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]">
             City Plaza is a premium commercial hub designed for striking visibility, global brands, and absolute long-term investment growth.
           </motion.p>
         </motion.div>
@@ -166,10 +166,10 @@ const UpcomingProject = () => {
                 <motion.p variants={textFadeUp} className="text-[#c47a5a] tracking-[0.4em] text-xs uppercase font-bold mb-4">
                   Exterior Architecture
                 </motion.p>
-                <motion.h2 variants={textFadeUp} className="text-4xl md:text-5xl font-serif font-light text-[#2B2B2B] mb-6 leading-tight">
+                <motion.h2 variants={textFadeUp} className="text-4xl md:text-5xl font-serif font-light text-text font-bold mb-6 leading-tight">
                   An Iconic <br/><span className="italic font-normal text-[#c47a5a]">Commercial Landmark</span>
                 </motion.h2>
-                <motion.p variants={textFadeUp} className="text-[#555] text-lg font-light leading-relaxed">
+                <motion.p variants={textFadeUp} className="text-text font-bold text-lg font-light leading-relaxed">
                   Engineered to be an unmistakable anchor for high-end retail, striking visibility, and state-of-the-art design setting a new visual standard for the city's skyline.
                 </motion.p>
               </div>
@@ -191,10 +191,10 @@ const UpcomingProject = () => {
                 <motion.p variants={textFadeUp} className="text-[#c47a5a] tracking-[0.4em] text-xs uppercase font-bold mb-4">
                   Retail Zones
                 </motion.p>
-                <motion.h2 variants={textFadeUp} className="text-4xl md:text-5xl font-serif font-light text-[#2B2B2B] mb-6 leading-tight">
+                <motion.h2 variants={textFadeUp} className="text-4xl md:text-5xl font-serif font-light text-text font-bold mb-6 leading-tight">
                   <span className="italic font-normal text-[#c47a5a]">Premium</span> Retail Experience
                 </motion.h2>
-                <motion.p variants={textFadeUp} className="text-[#555] text-lg font-light leading-relaxed">
+                <motion.p variants={textFadeUp} className="text-text font-bold text-lg font-light leading-relaxed">
                   Designed to maximize footfall and consumer engagement, offering expansive multi-level retail spaces precisely tailored for global brands and flagship stores.
                 </motion.p>
               </div>
@@ -231,10 +231,10 @@ const UpcomingProject = () => {
               <motion.p variants={textFadeUp} className="text-[#c47a5a] tracking-[0.4em] text-xs uppercase font-bold mb-4">
                 Walkway & Lifestyle
               </motion.p>
-              <motion.h2 variants={textFadeUp} className="text-4xl md:text-5xl font-serif font-light text-[#2B2B2B] mb-6 leading-tight">
+              <motion.h2 variants={textFadeUp} className="text-4xl md:text-5xl font-serif font-light text-text font-bold mb-6 leading-tight">
                 Designed for <br/> <span className="italic font-normal text-[#c47a5a]">Modern Living</span>
               </motion.h2>
-              <motion.p variants={textFadeUp} className="text-[#555] text-lg font-light leading-relaxed">
+              <motion.p variants={textFadeUp} className="text-text font-bold text-lg font-light leading-relaxed">
                 Seamless connectivity across brilliant corridors, creating an inviting atmosphere that blends shopping, leisure, and entertainment perfectly.
               </motion.p>
             </div>
@@ -262,10 +262,10 @@ const UpcomingProject = () => {
                 <motion.p variants={textFadeUp} className="text-[#c47a5a] tracking-[0.4em] text-xs uppercase font-bold mb-4">
                   Hospitality
                 </motion.p>
-                <motion.h2 variants={textFadeUp} className="text-4xl md:text-5xl font-serif font-light text-[#2B2B2B] mb-6 leading-tight">
+                <motion.h2 variants={textFadeUp} className="text-4xl md:text-5xl font-serif font-light text-text font-bold mb-6 leading-tight">
                   Luxury <span className="italic font-normal text-[#c47a5a]">Integration</span>
                 </motion.h2>
-                <motion.p variants={textFadeUp} className="text-[#555] text-lg font-light leading-relaxed">
+                <motion.p variants={textFadeUp} className="text-text font-bold text-lg font-light leading-relaxed">
                   A grand drop-off experience indicating a flawless fusion of premium corporate spaces right beside luxury hospitality standards.
                 </motion.p>
               </div>
@@ -283,7 +283,7 @@ const UpcomingProject = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }} variants={staggerContainer} className="mt-12">
             <motion.div variants={textFadeUp} className="text-center mb-24">
               <p className="text-[#c47a5a] tracking-[0.4em] text-xs uppercase font-bold mb-4">Strategic Positioning</p>
-              <h2 className="text-4xl md:text-6xl font-serif font-light text-[#2B2B2B]">Location <span className="italic text-[#c47a5a]">Advantage</span></h2>
+              <h2 className="text-4xl md:text-6xl font-serif font-light text-text font-bold">Location <span className="italic text-[#c47a5a]">Advantage</span></h2>
             </motion.div>
             
             <div className="relative flex flex-col md:flex-row justify-between items-start w-full max-w-5xl mx-auto gap-12 md:gap-0 mt-16">
@@ -299,8 +299,8 @@ const UpcomingProject = () => {
                   <div className="w-20 h-20 rounded-full bg-white border border-[#c47a5a]/20 flex items-center justify-center text-[#c47a5a] shadow-[0_10px_30px_rgba(196,122,90,0.1)] mb-8 transition-all duration-500 group-hover:scale-110 group-hover:bg-[#c47a5a] group-hover:text-white">
                     {item.icon}
                   </div>
-                  <h3 className="text-2xl font-serif text-[#2B2B2B] mb-4">{item.title}</h3>
-                  <p className="text-[#555] font-light leading-relaxed">{item.desc}</p>
+                  <h3 className="text-2xl font-serif text-text font-bold mb-4">{item.title}</h3>
+                  <p className="text-text font-bold font-light leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -314,7 +314,7 @@ const UpcomingProject = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }} variants={staggerContainer}>
              <motion.div variants={textFadeUp} className="text-center mb-24">
               <p className="text-[#c47a5a] tracking-[0.4em] text-xs uppercase font-bold mb-4">Financial Viability</p>
-              <h2 className="text-5xl md:text-7xl font-serif font-light text-[#2B2B2B]">Why <span className="italic text-[#c47a5a] font-medium">Invest?</span></h2>
+              <h2 className="text-5xl md:text-7xl font-serif font-light text-text font-bold">Why <span className="italic text-[#c47a5a] font-medium">Invest?</span></h2>
             </motion.div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
@@ -334,11 +334,11 @@ const UpcomingProject = () => {
                   <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-[#c47a5a]/5 to-transparent rounded-full blur-[20px] group-hover:bg-[#c47a5a]/15 transition-colors duration-500" />
                   
                   <div className="flex items-baseline justify-center md:justify-start gap-1 mb-2">
-                    <span className="text-6xl lg:text-7xl font-serif font-medium text-[#2B2B2B] tracking-tight">{item.metric}</span>
+                    <span className="text-6xl lg:text-7xl font-serif font-medium text-text font-bold tracking-tight">{item.metric}</span>
                     <span className="text-2xl text-[#c47a5a] font-bold">{item.suffix}</span>
                   </div>
                   <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-[#c47a5a] mb-6">{item.title}</h3>
-                  <p className="text-[#555] text-lg font-light leading-relaxed relative z-10">{item.desc}</p>
+                  <p className="text-text font-bold text-lg font-light leading-relaxed relative z-10">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -358,10 +358,10 @@ const UpcomingProject = () => {
             initial="hidden" whileInView="visible" viewport={{ amount: 0.5 }} variants={staggerContainer}
             className="max-w-3xl mx-auto bg-white/60 backdrop-blur-2xl border border-white p-12 md:p-20 rounded-[40px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)]"
           >
-            <motion.h2 variants={textFadeUp} className="text-5xl md:text-7xl font-serif font-light text-[#2B2B2B] mb-8 leading-tight">
+            <motion.h2 variants={textFadeUp} className="text-5xl md:text-7xl font-serif font-light text-text font-bold mb-8 leading-tight">
               Invest in the <br/><span className="italic text-[#c47a5a]">Future</span>
             </motion.h2>
-            <motion.p variants={textFadeUp} className="text-[#555] text-xl font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+            <motion.p variants={textFadeUp} className="text-text font-bold text-xl font-light mb-12 max-w-2xl mx-auto leading-relaxed">
               Secure a premium space in the most anticipated commercial destination of the city. Register your interest today.
             </motion.p>
             <motion.div variants={textFadeUp}>

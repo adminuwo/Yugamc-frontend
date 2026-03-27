@@ -1,30 +1,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ss1 from '../../assets/Screenshot 2026-03-20 080534.png';
-import elevation_1_2 from '../../assets/elevation_1_2.png';
+import { projectsData } from '../../data/projects';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const FeaturedProjects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: 'Yash Heights',
-      desc: 'Premium residential living with modern architectural excellence.',
-      img: ss1,
-      link: '/projects'
-    },
-    {
-      id: 2,
-      title: 'City Plaza',
-      desc: 'Future-ready commercial spaces at the heart of the city.',
-      img: elevation_1_2,
-      link: '/upcoming'
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const containerRef = React.useRef(null);
+
+  const orderedProjects = [
+    projectsData.find(p => p.id === 'satguru-city-mall'),
+    projectsData.find(p => p.id === 'yash-heights'),
+    ...projectsData.filter(p => !['satguru-city-mall', 'yash-heights'].includes(p.id))
+  ].filter(Boolean);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % orderedProjects.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + orderedProjects.length) % orderedProjects.length);
+  };
+
+  const scrollNext = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: 550, behavior: 'smooth' });
     }
-  ];
+  };
+
+  const scrollPrev = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: -550, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section className="py-24 bg-[#EDEDED]/30">
-      <div className="container mx-auto px-6 max-w-7xl">
+    <section className="py-24 bg-[#EDEDED]/30 overflow-hidden">
+      <div className="container mx-auto px-12 max-w-7xl relative">
         
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
           <motion.div 
@@ -42,44 +54,77 @@ const FeaturedProjects = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 md:mt-0"
+            className="mt-6 md:mt-0 flex items-center gap-6"
           >
-            <Link to="/projects" className="text-[10px] font-sans tracking-[0.3em] uppercase pb-2 border-b border-text/20 text-text/60 hover:text-accent hover:border-accent transition-all duration-300">
+            {/* Carousel Controls moved to sides */}
+            <Link to="/projects" className="text-[10px] font-sans tracking-[0.3em] uppercase pb-2 border-b border-text/20 text-text font-bold hover:text-accent hover:border-accent transition-all duration-300">
               Explore All Projects
             </Link>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          {projects.map((project, index) => (
-            <motion.div 
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.2, margin: "-50px" }}
-              transition={{ duration: 1, delay: index * 0.2, ease: [0.76, 0, 0.24, 1] }}
-              className="group"
-            >
-              <Link to={project.link}>
-                <div className="relative h-[300px] md:h-[400px] w-full mb-8 overflow-hidden rounded-2xl shadow-xl bg-white">
-                  <img 
-                    src={project.img} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-110"
-                  />
-                  {/* Overlay on Hover */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col items-center justify-center backdrop-blur-sm">
-                     <div className="w-12 h-px bg-accent mb-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-100"></div>
-                     <span className="text-white font-sans tracking-[0.5em] uppercase text-[10px]">View Details</span>
+        <div className="relative">
+          {/* Side Navigation Arrows (Always Visible) */}
+          <button 
+            onClick={scrollPrev}
+            className="absolute left-[-40px] lg:left-[-60px] top-[150px] md:top-[200px] z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-text/5 flex items-center justify-center hover:bg-accent hover:text-white transition-all active:scale-90 hidden md:flex"
+          >
+            <ArrowLeft size={20} />
+          </button>
+          
+          <button 
+            onClick={scrollNext}
+            className="absolute right-[-40px] lg:right-[-60px] top-[150px] md:top-[200px] z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-text/5 flex items-center justify-center hover:bg-accent hover:text-white transition-all active:scale-90 hidden md:flex"
+          >
+            <ArrowRight size={20} />
+          </button>
+
+          <div 
+            ref={containerRef}
+            className="flex gap-8 overflow-x-auto pb-12 scroll-smooth no-scrollbar"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
+            {orderedProjects.map((project, index) => (
+              <motion.div 
+                key={project.id}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.76, 0, 0.24, 1] }}
+                className="flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[35vw] group"
+                style={{ scrollSnapAlign: 'start' }}
+              >
+                <Link to={`/projects/${project.id}`}>
+                  <div className="relative h-[300px] md:h-[400px] w-full mb-8 overflow-hidden rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.08)] bg-white group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-700">
+                    <img 
+                      src={project.images[0]} 
+                      alt={project.name} 
+                      className="w-full h-full object-cover transition-transform duration-[1800ms] group-hover:scale-110"
+                    />
+                    {/* Luxury Overlay */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col items-center justify-center backdrop-blur-[2px]">
+                       <div className="w-12 h-[1px] bg-accent mb-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-100"></div>
+                       <span className="text-white font-sans tracking-[0.5em] uppercase text-[10px] font-bold">Explore Project</span>
+                    </div>
                   </div>
+                </Link>
+                <div className="flex flex-col space-y-3 px-2">
+                   <div className="flex items-center gap-3">
+                     <span className="text-[9px] uppercase tracking-[0.3em] text-accent font-bold">{project.type}</span>
+                     <div className="w-4 h-[1px] bg-text/10" />
+                     <span className="text-[9px] uppercase tracking-[0.1em] text-text/40 font-bold">{project.status}</span>
+                   </div>
+                   <h3 className="text-2xl md:text-3xl font-serif text-text group-hover:text-accent transition-colors duration-500">{project.name}</h3>
+                   <p className="text-text font-bold font-sans text-xs max-w-sm line-clamp-2 leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">{project.description}</p>
+                   
+                   <Link to={`/projects/${project.id}`} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-accent mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                     View Project Details
+                     <ArrowRight size={12} />
+                   </Link>
                 </div>
-              </Link>
-              <div className="flex flex-col space-y-2">
-                 <h3 className="text-3xl font-serif text-text group-hover:text-accent transition-colors duration-500">{project.title}</h3>
-                 <p className="text-text/50 font-sans font-light text-sm max-w-md">{project.desc}</p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
 
       </div>

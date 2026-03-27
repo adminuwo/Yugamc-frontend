@@ -22,7 +22,7 @@ const Navbar = ({ onBookVisit }) => {
     { name: 'About Us', path: '/about' },
     { name: 'Projects', path: '/projects' },
     { name: 'Upcoming', path: '/upcoming' },
-    { name: 'Why YUGAMC', path: '/why-us' },
+    { name: 'Why YugAMC', path: '/why-us' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -65,7 +65,7 @@ const Navbar = ({ onBookVisit }) => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-accent ${location.pathname === link.path ? 'text-accent' : 'text-text/80'}`}
+                className={`text-sm font-medium transition-colors hover:text-accent ${location.pathname === link.path ? 'text-accent' : 'text-text font-bold'}`}
               >
                 {link.name}
               </Link>
@@ -116,7 +116,7 @@ const Navbar = ({ onBookVisit }) => {
                     alt="YUG AMC"
                     className="h-10 w-auto object-contain"
                   />
-                  <span className="ml-3 font-serif font-bold text-text tracking-tighter text-lg">YUGAMC</span>
+                  <span className="ml-3 font-serif font-bold text-text tracking-tighter text-lg">YugAMC</span>
                 </Link>
                 <button
                   onClick={toggleMobileMenu}
@@ -144,7 +144,7 @@ const Navbar = ({ onBookVisit }) => {
                           className={`group relative flex items-center text-[20px] font-serif tracking-wide py-4 px-4 rounded-xl transition-all duration-300 ${
                             isActive 
                               ? 'text-accent font-semibold bg-accent/5' 
-                              : 'text-text/80 hover:text-accent hover:translate-x-2'
+                              : 'text-text font-bold hover:text-accent hover:translate-x-2'
                           }`}
                           onClick={toggleMobileMenu}
                         >
@@ -167,10 +167,10 @@ const Navbar = ({ onBookVisit }) => {
                 <div className="mt-12 p-6 bg-[#f8f8f8] rounded-2xl border border-secondary/30 shadow-sm">
                   <span className="text-accent text-[11px] tracking-[0.3em] uppercase font-bold block mb-4 opacity-80">Inquiries</span>
                   <div className="space-y-3">
-                    <a href="mailto:admin@uwo24.com" className="block text-text/90 font-serif text-lg hover:text-accent transition-colors">
+                    <a href="mailto:admin@uwo24.com" className="block text-text font-bold font-serif text-lg hover:text-accent transition-colors">
                       admin@uwo24.com
                     </a>
-                    <a href="https://wa.me/918871190020" target="_blank" rel="noopener noreferrer" className="block text-text/70 font-sans text-sm hover:text-accent transition-colors">
+                    <a href="https://wa.me/918871190020" target="_blank" rel="noopener noreferrer" className="block text-text font-bold font-sans text-sm hover:text-accent transition-colors">
                       +91 88711 90020
                     </a>
                   </div>

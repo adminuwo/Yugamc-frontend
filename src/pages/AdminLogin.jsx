@@ -62,7 +62,7 @@ const AdminLogin = () => {
                         <ShieldCheck size={32} />
                     </div>
                     <h1 className="text-3xl font-serif text-text font-bold mb-2 tracking-tight">Admin Login</h1>
-                    <p className="text-xs font-sans text-text/40 tracking-[0.2em] uppercase font-bold">Manage Assistant Data</p>
+                    <p className="text-xs font-sans text-text font-bold tracking-[0.2em] uppercase font-bold">Manage Assistant Data</p>
                 </div>
 
                 {error && (
@@ -77,7 +77,7 @@ const AdminLogin = () => {
 
                 <form onSubmit={handleLogin} className="space-y-6">
                     <div className="relative group">
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text/30 group-focus-within:text-accent transition-colors">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text font-bold group-focus-within:text-accent transition-colors">
                             <User size={18} />
                         </div>
                         <input
@@ -87,12 +87,12 @@ const AdminLogin = () => {
                             required
                             value={credentials.username}
                             onChange={handleChange}
-                            className="w-full bg-primary/40 border border-secondary/50 py-4 pl-12 pr-4 rounded-2xl outline-none focus:ring-1 focus:ring-accent transition-all text-sm font-sans placeholder:text-text/20"
+                            className="w-full bg-primary/40 border border-secondary/50 py-4 pl-12 pr-4 rounded-2xl outline-none focus:ring-1 focus:ring-accent transition-all text-sm font-sans placeholder:text-text font-bold"
                         />
                     </div>
 
                     <div className="relative group">
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text/30 group-focus-within:text-accent transition-colors">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text font-bold group-focus-within:text-accent transition-colors">
                             <Lock size={18} />
                         </div>
                         <input
@@ -102,12 +102,12 @@ const AdminLogin = () => {
                             required
                             value={credentials.password}
                             onChange={handleChange}
-                            className="w-full bg-primary/40 border border-secondary/50 py-4 pl-12 pr-12 rounded-2xl outline-none focus:ring-1 focus:ring-accent transition-all text-sm font-sans placeholder:text-text/20"
+                            className="w-full bg-primary/40 border border-secondary/50 py-4 pl-12 pr-12 rounded-2xl outline-none focus:ring-1 focus:ring-accent transition-all text-sm font-sans placeholder:text-text font-bold"
                         />
                         <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 text-text/30 hover:text-text transition-colors"
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-text font-bold hover:text-text transition-colors"
                         >
                             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>

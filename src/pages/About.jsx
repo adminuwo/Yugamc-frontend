@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion';
-import { Target, Compass, Lightbulb, Grid, Building2, MessageSquare, BarChart3, Star } from 'lucide-react';
+import { Target, Compass, Lightbulb, Grid, Building2, MessageSquare, BarChart3, Star, Sparkles } from 'lucide-react';
 import h8 from '../assets/h8.webp';
 import w1 from '../assets/w1.jpg';
+import founderImg from '../assets/WhatsApp Image 2026-03-27 at 12.55.23 PM.jpeg';
 import AboutVideoSection from '../components/about/AboutVideoSection';
 
 
@@ -60,7 +61,7 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false }}
                     transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-                    className="text-lg md:text-xl text-text/70 font-sans leading-[1.8]"
+                    className="text-lg md:text-xl text-text font-bold font-sans leading-[1.8]"
                   >
                     YUG AMC is a forward-thinking real estate brand transforming Jabalpur's skyline with 
                     <span className="text-accent font-semibold px-1 italic">trust</span>, 
@@ -73,7 +74,7 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false }}
                     transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-                    className="text-lg md:text-xl text-text/70 font-sans leading-[1.8]"
+                    className="text-lg md:text-xl text-text font-bold font-sans leading-[1.8]"
                   >
                     We bring international standards of architecture and premium lifestyle amenities to the heart of the city, ensuring every development stands as a benchmark of 
                     <span className="text-accent font-semibold px-1 italic">excellence</span>.
@@ -88,7 +89,7 @@ const About = () => {
                    className="mt-12 flex items-center gap-6"
                 >
                   <div className="h-12 w-px bg-secondary" />
-                  <p className="text-[10px] tracking-[0.4em] uppercase font-bold text-accent/60">
+                  <p className="text-[10px] tracking-[0.4em] uppercase font-bold text-accent">
                     Est. 2014 · Jabalpur
                   </p>
                 </motion.div>
@@ -132,11 +133,112 @@ const About = () => {
                 >
                   <div className="text-center">
                     <span className="block text-4xl font-serif text-accent mb-1 italic">10+</span>
-                    <span className="block text-[10px] tracking-widest uppercase text-text/50 font-bold whitespace-nowrap">Years of Legacy</span>
+                    <span className="block text-[10px] tracking-widest uppercase text-text font-bold whitespace-nowrap">Years of Legacy</span>
                   </div>
                 </motion.div>
               </motion.div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Section - Founder Portfolio Area */}
+      <section className="py-24 md:py-32 bg-white overflow-hidden">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="flex flex-col md:flex-row-reverse items-center gap-16 lg:gap-24">
+            
+            {/* Right: Founder Image with Depth Decorations */}
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="w-full md:w-1/2 relative"
+            >
+              {/* Decorative accent geometry */}
+              <div className="absolute -inset-4 border border-accent/10 rounded-3xl -z-10 translate-x-4 translate-y-4" />
+              <div className="absolute -inset-4 border border-secondary rounded-3xl -z-20 -translate-x-2 -translate-y-2" />
+              
+              <div className="relative overflow-hidden rounded-[20px] shadow-[0_20px_60px_rgba(0,0,0,0.12)] bg-secondary/20 aspect-[4/5]">
+                <motion.img 
+                  src={founderImg} 
+                  alt="Mr. Gurumukh P Ahuja" 
+                  className="w-full h-full object-cover transition-transform duration-[2000ms] hover:scale-110"
+                  initial={{ scale: 1.2 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                />
+                {/* Subtle gradient vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60 pointer-events-none" />
+              </div>
+              
+              {/* Signature floating badge */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8 }}
+                className="absolute -bottom-6 -left-6 md:-left-8 bg-white py-6 px-10 shadow-2xl rounded-2xl border-l-4 border-accent"
+              >
+                 <span className="text-2xl font-serif italic text-accent select-none block leading-none">Founder</span>
+                 <span className="text-[10px] tracking-[0.2em] uppercase text-text/40 font-bold mt-2 block">Since 2014</span>
+              </motion.div>
+            </motion.div>
+
+            {/* Left: Visionary Narrative */}
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+              className="w-full md:w-1/2 flex flex-col items-start"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-[1.5px] bg-accent" />
+                <span className="text-[11px] font-sans tracking-[0.4em] uppercase text-accent font-bold">Leadership</span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif text-text mb-8 leading-tight">
+                Driven by <span className="italic">Vision</span>.<br />
+                Built on <span className="text-accent underline decoration-accent/20 underline-offset-8">Trust</span>.
+              </h2>
+
+              <div className="mb-10">
+                <h3 className="text-3xl md:text-4xl font-serif text-text mb-2">Mr. Gurumukh P Ahuja</h3>
+                <div className="flex items-center gap-3 text-text/40">
+                  <span className="text-[11px] tracking-[0.2em] uppercase font-bold">Founder & Visionary Leader</span>
+                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
+                </div>
+              </div>
+
+              <div className="space-y-6 mb-12">
+                <p className="text-lg md:text-xl text-text font-bold font-sans leading-relaxed border-l-2 border-secondary/30 pl-6">
+                  With over three decades of mastery in real estate and architectural development, Mr. Ahuja embodies the spirit of YUG AMC. His journey is defined by a singular pursuit: translating complex dreams into tangible landmarks.
+                </p>
+                <p className="text-lg text-text font-bold font-sans leading-relaxed opacity-70 pl-6">
+                  Under his visionary leadership, we don't just prioritize construction; we prioritize the lives that will flourish within them, ensuring every project is a testament to quality and integrity.
+                </p>
+              </div>
+
+              {/* Founder's Motto Quote */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 }}
+                className="relative p-8 md:p-12 bg-[#F9F9F9] rounded-[40px] border border-[#eeeeee] w-full"
+              >
+                 <Sparkles className="absolute top-6 left-6 text-accent/20" size={32} />
+                 <p className="text-xl md:text-2xl lg:text-3xl font-serif italic text-text relative z-10 leading-relaxed">
+                   “We don’t just build properties, we build trust and future lifestyles for generations to come.”
+                 </p>
+                 <div className="mt-8 pt-8 border-t border-secondary/20 flex items-center justify-between">
+                    <span className="text-[10px] tracking-widest uppercase text-text/40 font-bold">The Collective Philosophy</span>
+                    <div className="flex gap-1.5">
+                       {[1,2,3].map(i => <div key={i} className="w-1.5 h-1.5 bg-accent/20 rounded-full" />)}
+                    </div>
+                 </div>
+              </motion.div>
+            </motion.div>
+
           </div>
         </div>
       </section>
@@ -228,7 +330,7 @@ const About = () => {
                       {item.title}
                     </h3>
                     
-                    <p className="text-text/70 font-sans leading-relaxed text-sm md:text-base group-hover:text-text/90">
+                    <p className="text-text font-bold font-sans leading-relaxed text-sm md:text-base group-hover:text-text">
                       {item.desc.split(new RegExp(`(${item.accentWords.join('|')})`, 'gi')).map((part, i) => 
                         item.accentWords.some(word => word.toLowerCase() === part.toLowerCase()) ? (
                           <span key={i} className="text-accent/90 font-medium">{part}</span>
@@ -305,7 +407,7 @@ const About = () => {
                     transition={{ duration: 0.8, delay: index * 0.1 }}
                     className="w-full md:w-1/2 flex justify-start md:justify-center mb-4 md:mb-0 relative pl-12 md:pl-0"
                   >
-                    <span className="text-4xl md:text-7xl font-serif font-bold text-text/10 group-hover:text-accent transition-colors duration-500 select-none">
+                    <span className="text-4xl md:text-7xl font-serif font-bold text-text/20 group-hover:text-accent transition-colors duration-500 select-none">
                       {item.num}
                     </span>
                     {/* Interaction point on the line */}
@@ -324,7 +426,7 @@ const About = () => {
                        {item.title}
                        <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 group-hover:w-full" />
                     </h3>
-                    <p className="text-text/70 font-sans leading-relaxed text-sm md:text-base max-w-md">
+                    <p className="text-text font-bold font-sans leading-relaxed text-sm md:text-base max-w-md">
                       {item.desc}
                     </p>
                   </motion.div>

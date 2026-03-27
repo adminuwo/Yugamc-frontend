@@ -30,7 +30,7 @@ const WhyChooseUsSection = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-serif text-text"
           >
-            Why Choose <span className="italic font-light">YUGAMC</span>
+            Why Choose <span className="italic font-light">YugAMC</span>
           </motion.h2>
         </div>
 
@@ -50,7 +50,7 @@ const WhyChooseUsSection = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-serif text-text mb-3">{point.title}</h3>
-              <p className="text-text/70 font-sans text-sm leading-relaxed">{point.desc}</p>
+              <p className="text-text font-bold font-sans text-sm leading-relaxed">{point.desc}</p>
             </motion.div>
           ))}
         </div>

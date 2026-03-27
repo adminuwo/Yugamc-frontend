@@ -13,7 +13,7 @@ const TermsOfService = () => {
           <h1 className="text-4xl md:text-6xl font-serif text-text mb-8">Terms of Service</h1>
           <div className="w-20 h-1 bg-accent mb-12" />
 
-          <div className="prose prose-lg max-w-none text-text/70 font-sans leading-relaxed space-y-8">
+          <div className="prose prose-lg max-w-none text-text font-bold font-sans leading-relaxed space-y-8">
             <section>
               <h2 className="text-2xl font-serif text-black mb-4">1. Acceptance of Terms</h2>
               <p>

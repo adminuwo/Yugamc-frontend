@@ -5,6 +5,48 @@ import { Sparkles, X, Send, MessageSquare, Check, Mic, MicOff } from 'lucide-rea
 import { useLenis } from 'lenis/react';
 import yugLogo from '../assets/yug logo.webp';
 
+const OnboardingPopup = ({ onChatNow, onDismiss }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 20, scale: 0.95 }}
+      className="fixed bottom-[180px] right-6 z-[10001] w-[280px] md:w-[320px] bg-white/80 backdrop-blur-xl border border-white/40 rounded-[24px] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.15)] group"
+    >
+      {/* Close Button */}
+      <button 
+        onClick={onDismiss}
+        className="absolute top-4 right-4 p-1 hover:bg-black/5 rounded-full transition-colors text-text/40 hover:text-text"
+      >
+        <X size={14} />
+      </button>
+
+      <div className="space-y-3">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center">
+            <Sparkles size={16} className="text-accent" />
+          </div>
+          <h4 className="font-serif text-lg text-text">Need Help?</h4>
+        </div>
+        
+        <p className="text-[13px] text-text/70 leading-relaxed font-sans">
+          If you have any questions or need assistance, connect with our <b>YUG AMC Assistant</b>.
+        </p>
+
+        <button
+          onClick={onChatNow}
+          className="w-full py-3 bg-accent text-white rounded-xl font-bold text-[12px] uppercase tracking-wider shadow-lg shadow-accent/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+        >
+          Chat Now
+        </button>
+      </div>
+
+      {/* Pointer Arrow */}
+      <div className="absolute -bottom-3 right-8 w-6 h-6 bg-white rotate-45 border-r border-b border-white/40 shadow-[10px_10px_20px_rgba(0,0,0,0.05)]" />
+    </motion.div>
+  );
+};
+
 const AIAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -21,6 +63,9 @@ const AIAssistant = () => {
   const [regError, setRegError] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   
+  // Onboarding State
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
   const lenis = useLenis();
 
   const messagesEndRef = useRef(null);
@@ -77,7 +122,7 @@ const AIAssistant = () => {
     }
   };
 
-  // Scroll Lock and Persistence Check
+  // Onboarding Logic & persistence Check
   useEffect(() => {
     // Check registration
     const storedLead = localStorage.getItem('yug_chat_lead');
@@ -86,6 +131,23 @@ const AIAssistant = () => {
       setIsRegistered(true);
       setLeadId(parsed.leadId);
       setRegData({ name: parsed.name, email: parsed.email });
+    }
+
+    // Onboarding Timer
+    if (!isOpen) {
+      const timer = setTimeout(() => {
+        setShowOnboarding(true);
+      }, 500); // Appear almost immediately after component mounts
+
+      // Auto-dismiss after 8s
+      const dismissTimer = setTimeout(() => {
+        handleDismissOnboarding();
+      }, 11000);
+
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(dismissTimer);
+      };
     }
 
     if (isOpen) {
@@ -97,7 +159,20 @@ const AIAssistant = () => {
     }
   }, [isOpen, lenis]);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+    if (!isOpen) handleDismissOnboarding();
+  };
+
+  const handleDismissOnboarding = () => {
+    setShowOnboarding(false);
+    sessionStorage.setItem('yug_onboarding_seen', 'true');
+  };
+
+  const handleOpenFromOnboarding = () => {
+    setIsOpen(true);
+    handleDismissOnboarding();
+  };
 
   const handleSendMessage = async (e) => {
     if (e) e.preventDefault();
@@ -183,11 +258,20 @@ const AIAssistant = () => {
 
   return (
     <>
+      <AnimatePresence>
+        {showOnboarding && !isOpen && (
+          <OnboardingPopup 
+            onChatNow={handleOpenFromOnboarding} 
+            onDismiss={handleDismissOnboarding} 
+          />
+        )}
+      </AnimatePresence>
+
       {/* Floating Button */}
       <div className="fixed bottom-[100px] right-6 z-[9999] group">
         {/* Tooltip */}
         <AnimatePresence>
-          {!isOpen && (
+          {!isOpen && !showOnboarding && (
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileHover={{ opacity: 1, x: 0 }}
@@ -204,11 +288,19 @@ const AIAssistant = () => {
           animate={{ 
             scale: 1, 
             opacity: 1,
-            y: [0, -8, 0] 
+            y: [0, -8, 0],
+            boxShadow: showOnboarding 
+              ? ["0px 0px 0px 0px rgba(196,106,74,0)", "0px 0px 20px 10px rgba(196,106,74,0.2)", "0px 0px 0px 0px rgba(196,106,74,0)"]
+              : "0px 0px 0px 0px rgba(0,0,0,0)"
           }}
           transition={{
             y: {
               duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            },
+            boxShadow: {
+              duration: 2,
               repeat: Infinity,
               ease: "easeInOut"
             },
@@ -221,8 +313,11 @@ const AIAssistant = () => {
         >
           {/* Pulsing Glow Effect */}
           <motion.div
-            animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.3, 0.1] }}
-            transition={{ duration: 4, repeat: Infinity }}
+            animate={{ 
+              scale: showOnboarding ? [1, 1.4, 1] : [1, 1.2, 1], 
+              opacity: showOnboarding ? [0.2, 0.5, 0.2] : [0.1, 0.3, 0.1] 
+            }}
+            transition={{ duration: showOnboarding ? 2 : 4, repeat: Infinity }}
             className="absolute inset-0 bg-accent rounded-full -z-10"
           />
 

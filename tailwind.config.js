@@ -11,7 +11,7 @@ export default {
         primary: '#F8F8F8',
         secondary: '#EDEDED',
         accent: '#C46A4A',
-        text: '#2B2B2B',
+        text: '#000000',
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'serif'],

@@ -83,7 +83,7 @@ const ProjectDetail = () => {
                     transition={{ duration: 0.8 }}
                 >
                     <h2 className="text-3xl font-serif mb-6 text-text">Overview</h2>
-                    <p className="text-lg font-sans font-light text-text/70 leading-relaxed">
+                    <p className="text-lg font-sans text-text font-bold leading-relaxed">
                         {project.description} This {project.type.toLowerCase()} development emphasizes extraordinary quality and is built to deliver lasting value and premium experiences tailored specifically to those who seek the best.
                     </p>
                 </motion.div>
@@ -131,7 +131,7 @@ const ProjectDetail = () => {
                             {project.status === 'Completed' ? 'Ready to Move' : project.status}
                         </span>
                         <h3 className="text-2xl font-serif text-text mb-3">Interested in {project.name}?</h3>
-                        <p className="text-sm font-sans text-text/60 leading-relaxed">Schedule a personalized site visit or connect with our sales executive to explore investment benefits.</p>
+                        <p className="text-sm font-sans text-text font-bold leading-relaxed">Schedule a personalized site visit or connect with our sales executive to explore investment benefits.</p>
                     </div>
 
                     <div className="space-y-4">

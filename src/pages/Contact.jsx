@@ -72,7 +72,7 @@ const Contact = () => {
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-text mb-6 leading-tight">
               Let's <span className="italic font-light">Connect</span>
             </h1>
-            <p className="text-lg md:text-xl font-sans text-text/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl font-sans text-text font-bold max-w-2xl mx-auto leading-relaxed">
               We’re here to guide your next investment journey with expertise and integrity.
             </p>
           </motion.div>
@@ -105,15 +105,14 @@ const Contact = () => {
 
               {/* Contact Information */}
               <div>
-                <h2 className="text-3xl font-serif text-text mb-10">Reach Out Today</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12">
+                <div className="flex flex-col gap-10">
                   <div className="flex items-start">
                     <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-5 text-accent shrink-0 border border-accent/10">
                       <MapPin size={20} />
                     </div>
                     <div>
                       <h4 className="font-serif text-lg mb-1 text-text">Office Address</h4>
-                      <p className="font-sans text-text/70 text-sm leading-relaxed">SG Square, Rampur Chowk, Jabalpur</p>
+                      <p className="font-sans text-text font-bold text-sm leading-relaxed">SG Square, Rampur Chowk, Jabalpur</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -122,16 +121,16 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-serif text-lg mb-1 text-text">Phone</h4>
-                      <p className="font-sans text-text/70 text-sm leading-relaxed">8871190020</p>
+                      <p className="font-sans text-text font-bold text-sm leading-relaxed">8871190020</p>
                     </div>
                   </div>
-                  <div className="flex items-start sm:col-span-2">
+                  <div className="flex items-start">
                     <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-5 text-accent shrink-0 border border-accent/10">
                       <Mail size={20} />
                     </div>
                     <div>
                       <h4 className="font-serif text-lg mb-1 text-text">Email</h4>
-                      <p className="font-sans text-text/70 text-sm leading-relaxed">admin@uwo24.com</p>
+                      <p className="font-sans text-text font-bold text-sm leading-relaxed">admin@uwo24.com</p>
                     </div>
                   </div>
                 </div>
@@ -185,7 +184,7 @@ const Contact = () => {
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.3, ease: "easeInOut" }}
                           >
-                            <div className="px-6 pb-6 text-text/70 font-sans text-base border-t border-secondary/30 pt-4 leading-relaxed">
+                            <div className="px-6 pb-6 text-text font-bold font-sans text-base border-t border-secondary/30 pt-4 leading-relaxed">
                               {faq.a}
                             </div>
                           </motion.div>
@@ -209,7 +208,7 @@ const Contact = () => {
               <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 -z-10"></div>
               
               <h3 className="text-4xl font-serif text-text mb-4">Get a Call Back</h3>
-              <p className="text-text/60 font-sans mb-10 text-sm uppercase tracking-widest">Submit your details and we'll reach out within 24 hours.</p>
+
               
               <form onSubmit={submitForm} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

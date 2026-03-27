@@ -21,7 +21,7 @@ const Projects = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg font-sans text-text/70 max-w-2xl mx-auto font-light"
+            className="text-lg font-sans text-text font-bold max-w-2xl mx-auto"
           >
             A curated collection of developments built with quality, trust, and excellence.
           </motion.p>
@@ -53,17 +53,17 @@ const Projects = () => {
                     {project.name}
                   </h2>
                   
-                  <p className="font-sans italic text-text/60 mb-8 border-l-2 border-accent pl-4">
+                  <p className="font-sans italic text-text font-bold mb-8 border-l-2 border-accent pl-4">
                     {project.location}
                   </p>
                   
-                  <p className="text-text/70 font-sans leading-relaxed mb-8 text-base md:text-lg font-light">
+                  <p className="text-text font-bold font-sans leading-relaxed mb-8 text-base md:text-lg">
                     {project.description}
                   </p>
                   
                   <div className="flex flex-wrap gap-3 mb-10">
                     {project.highlights.map((hlt, i) => (
-                      <span key={i} className="px-4 py-2 bg-secondary/30 rounded-full text-[11px] font-bold uppercase tracking-wider text-text/70">
+                      <span key={i} className="px-4 py-2 bg-secondary/30 rounded-full text-[11px] font-bold uppercase tracking-wider text-text font-bold">
                         {hlt}
                       </span>
                     ))}
