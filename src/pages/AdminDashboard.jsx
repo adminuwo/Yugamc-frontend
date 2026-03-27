@@ -18,6 +18,7 @@ import {
     MessageSquare
 } from 'lucide-react';
 import yugLogo from '../assets/yug logo.webp';
+import CustomDropdown from '../components/common/CustomDropdown';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab ] = useState('enquiries');
@@ -289,16 +290,16 @@ const AdminDashboard = () => {
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
                             </div>
-                            <select 
-                                className="bg-primary/20 rounded-xl px-4 py-3 outline-none text-sm cursor-pointer"
+                            <CustomDropdown
                                 value={filterType}
                                 onChange={(e) => setFilterType(e.target.value)}
-                            >
-                                <option value="All">Sari Jarurat (All)</option>
-                                <option value="Residential">Ghar (Residential)</option>
-                                <option value="Commercial">Dukan/Office (Commercial)</option>
-                                <option value="Investment">Investment</option>
-                            </select>
+                                options={[
+                                    { value: "All", label: "Sari Jarurat (All)" },
+                                    { value: "Residential", label: "Ghar (Residential)" },
+                                    { value: "Commercial", label: "Dukan/Office (Commercial)" },
+                                    { value: "Investment", label: "Investment" }
+                                ]}
+                            />
                         </div>
 
                         {/* Leads List */}

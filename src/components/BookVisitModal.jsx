@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Clock, MapPin, IndianRupee, User, Mail, Phone, Send, CheckCircle2 } from 'lucide-react';
+import CustomDropdown from './common/CustomDropdown';
 
 const BookVisitModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -113,7 +114,7 @@ const BookVisitModal = ({ isOpen, onClose }) => {
           {/* Header */}
           <div className="relative h-24 md:h-32 bg-[#c46a4a] flex items-center justify-center text-center px-6 flex-shrink-0">
             <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent scale-150" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent scale-150" />
             </div>
             <div className="relative z-10">
               <h2 className="text-xl md:text-3xl font-serif text-white tracking-wide">Schedule Your Private Visit</h2>
@@ -128,12 +129,12 @@ const BookVisitModal = ({ isOpen, onClose }) => {
           </div>
 
           {/* Form Content (Scrollable) */}
-          <div 
+          <div
             className="flex-1 overflow-y-auto p-6 md:p-10"
-            style={{ 
-                WebkitOverflowScrolling: 'touch', 
-                touchAction: 'pan-y',
-                overscrollBehavior: 'contain'
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'pan-y',
+              overscrollBehavior: 'contain'
             }}
           >
             {isSuccess ? (
@@ -204,44 +205,36 @@ const BookVisitModal = ({ isOpen, onClose }) => {
                   </div>
 
                   {/* Preferred Location */}
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-text/50 ml-1">Preferred Location</label>
-                    <div className="relative">
-                      <MapPin size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-accent" />
-                      <select
-                        name="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        className="w-full bg-[#f8f8f8] border-none rounded-xl py-4 pl-12 pr-4 text-sm font-sans focus:ring-2 focus:ring-accent/20 transition-all outline-none appearance-none"
-                      >
-                        <option value="">Select Project/Location</option>
-                        <option value="Yash Heights">Yash Heights (South Civil Lines)</option>
-                        <option value="City Plaza">City Plaza (Rampur Chowk)</option>
-                        <option value="SG Square">SG Square (Vijay Nagar)</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                  </div>
+                  <CustomDropdown
+                    label="Preferred Location"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    icon={MapPin}
+                    placeholder="Select Project/Location"
+                    options={[
+                      { value: "Yash Heights", label: "Yash Heights (South Civil Lines)" },
+                      { value: "City Plaza", label: "City Plaza (Rampur Chowk)" },
+                      { value: "SG Square", label: "SG Square (Vijay Nagar)" },
+                      { value: "Other", label: "Other" }
+                    ]}
+                  />
 
                   {/* Budget */}
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-text/50 ml-1">Expected Budget</label>
-                    <div className="relative">
-                      <IndianRupee size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-accent" />
-                      <select
-                        name="budget"
-                        value={formData.budget}
-                        onChange={handleChange}
-                        className="w-full bg-[#f8f8f8] border-none rounded-xl py-4 pl-12 pr-4 text-sm font-sans focus:ring-2 focus:ring-accent/20 transition-all outline-none appearance-none"
-                      >
-                        <option value="">Select Budget Range</option>
-                        <option value="40-60L">40L - 60L</option>
-                        <option value="60-80L">60L - 80L</option>
-                        <option value="80L-1.2Cr">80L - 1.2Cr</option>
-                        <option value="1.2Cr+">1.2Cr+</option>
-                      </select>
-                    </div>
-                  </div>
+                  <CustomDropdown
+                    label="Expected Budget"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleChange}
+                    icon={IndianRupee}
+                    placeholder="Select Budget Range"
+                    options={[
+                      { value: "40-60L", label: "40L - 60L" },
+                      { value: "60-80L", label: "60L - 80L" },
+                      { value: "80L-1.2Cr", label: "80L - 1.2Cr" },
+                      { value: "1.2Cr+", label: "1.2Cr+" }
+                    ]}
+                  />
 
                   {/* Visit Date */}
                   <div className="space-y-2">
@@ -260,22 +253,20 @@ const BookVisitModal = ({ isOpen, onClose }) => {
                   </div>
 
                   {/* Time Slot */}
-                  <div className="space-y-2 md:col-span-2">
-                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-text/50 ml-1">Preferred Time Slot</label>
-                    <div className="relative">
-                      <Clock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-accent" />
-                      <select
-                        name="timeSlot"
-                        value={formData.timeSlot}
-                        onChange={handleChange}
-                        className="w-full bg-[#f8f8f8] border-none rounded-xl py-4 pl-12 pr-4 text-sm font-sans focus:ring-2 focus:ring-accent/20 transition-all outline-none appearance-none"
-                      >
-                        <option value="">Select a time slot</option>
-                        <option value="Morning (10 AM - 1 PM)">Morning (10 AM - 1 PM)</option>
-                        <option value="Afternoon (1 PM - 4 PM)">Afternoon (1 PM - 4 PM)</option>
-                        <option value="Evening (4 PM - 7 PM)">Evening (4 PM - 7 PM)</option>
-                      </select>
-                    </div>
+                  <div className="md:col-span-2">
+                    <CustomDropdown
+                      label="Preferred Time Slot"
+                      name="timeSlot"
+                      value={formData.timeSlot}
+                      onChange={handleChange}
+                      icon={Clock}
+                      placeholder="Select a time slot"
+                      options={[
+                        { value: "Morning (10 AM - 1 PM)", label: "Morning (10 AM - 1 PM)" },
+                        { value: "Afternoon (1 PM - 4 PM)", label: "Afternoon (1 PM - 4 PM)" },
+                        { value: "Evening (4 PM - 7 PM)", label: "Evening (4 PM - 7 PM)" }
+                      ]}
+                    />
                   </div>
                 </div>
 

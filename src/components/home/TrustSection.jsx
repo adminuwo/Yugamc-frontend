@@ -41,49 +41,33 @@ const AnimatedCounter = ({ end, duration = 3, label, desc, suffix = '', index })
   return (
     <motion.div 
       ref={ref}
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 1.2, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ scale: 1.05, y: -10 }}
-      className="relative flex flex-col items-center text-center px-6 py-10 group cursor-default h-full min-h-[300px] justify-center"
+      whileHover={{ y: -6 }}
+      className="relative flex flex-col items-center text-center p-8 bg-white border border-black/5 rounded-[24px] shadow-[0_10px_25px_rgba(0,0,0,0.05),0_2px_6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] transition-all duration-300 group cursor-default h-full"
     >
-      {/* Cinematic Floating Card Base */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#E27A5D] via-[#B05436] to-[#8E3A21] rounded-[60px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] transition-all duration-700 group-hover:shadow-[0_60px_100px_-20px_rgba(142,58,33,0.5)] border border-white/10 -z-10" />
-      
-      {/* Top Corner Radial Light Glow */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,_rgba(255,255,255,0.15)_0%,_transparent_50%)] rounded-[60px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-      
-      {/* Glassmorphism Shine Overlay (Removed backdrop-blur to fix text clarity) */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none opacity-50 group-hover:opacity-80 transition-opacity duration-700 rounded-[60px]" />
-      
-      <NoiseOverlay />
-
-      {/* Luxury Serif Number with Shine */}
-      <div className="relative mb-6">
+      {/* Luxury Number */}
+      <div className="relative mb-4">
         <motion.div 
-          className="text-5xl lg:text-6xl font-serif text-white tracking-tighter drop-shadow-[0_15px_30px_rgba(0,0,0,0.3)] font-bold bg-gradient-to-b from-white via-white to-white/60 bg-clip-text text-transparent"
+          className="text-4xl lg:text-5xl font-serif text-[#c46a4a] tracking-tight font-bold"
         >
           {count}{suffix}
         </motion.div>
-        {/* Under-glow for the number */}
-        <div className="absolute inset-0 bg-white/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
       </div>
 
-      {/* Title Text (Minimal & Spaced) */}
-      <div className="mb-4">
-        <h4 className="text-[10px] font-sans tracking-[0.6em] uppercase text-white/70 font-bold group-hover:text-white transition-colors duration-500">
+      {/* Spacing Divider */}
+      <div className="h-[1px] w-8 bg-[#c46a4a]/20 mb-6 group-hover:w-16 transition-all duration-700 ease-out" />
+
+      {/* Title & Description */}
+      <div className="space-y-2">
+        <h4 className="text-[11px] font-sans tracking-[0.3em] uppercase text-text/60 font-bold group-hover:text-text transition-colors duration-500">
           {label}
         </h4>
+        <p className="text-[9px] font-sans text-text/30 font-bold tracking-[0.1em] uppercase">
+          {desc}
+        </p>
       </div>
-
-      {/* Spacing line */}
-      <div className="h-[2px] w-8 bg-white/20 mb-4 group-hover:w-16 transition-all duration-700 ease-[0.76, 0, 0.24, 1]" />
-
-      {/* Bottom Text (Dark Bold Contrast) */}
-      <p className="text-[11px] font-sans text-black font-extrabold tracking-[0.3em] uppercase italic leading-tight drop-shadow-sm px-4">
-        {desc}
-      </p>
     </motion.div>
   );
 };
@@ -103,23 +87,22 @@ const TrustSection = () => {
       ref={containerRef}
       className="relative -mt-32 pt-48 pb-40 overflow-hidden z-10"
     >
-      {/* Abstract Background Design */}
+      {/* Soft Contrast Background Design */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[#FBFBFB]" />
-        {/* Soft Blurred Ambient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#E27A5D]/5 blur-[150px] rounded-full" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#B05436]/5 blur-[200px] rounded-full" />
-        <NoiseOverlay />
+        <div className="absolute inset-0 bg-[#f8f6f4]" />
+        {/* Subtle Ambient Glows - Option 3 */}
+        <div className="absolute top-1/4 left-1/10 w-[300px] h-[300px] bg-[#c46a4a]/15 blur-[100px] rounded-full" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#c46a4a]/5 blur-[150px] rounded-full" />
       </div>
 
       {/* Top Transition Fade */}
-      <div className="absolute top-0 left-0 right-0 h-80 bg-gradient-to-b from-[#FBFBFB] to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
 
       <motion.div 
         style={{ scale: sectionScale, opacity: sectionOpacity }}
         className="container mx-auto px-6 max-w-[1500px] relative z-20"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 items-center">
           <AnimatedCounter index={0} end={10} suffix="+" label="Years of Trust" desc="A Decade of Excellence" />
           <AnimatedCounter index={1} end={15} suffix="+" label="Masterpieces Built" desc="Iconic Developments" />
           <AnimatedCounter index={2} end={500} suffix="+" label="Families Happy" desc="Lives Transformed" />

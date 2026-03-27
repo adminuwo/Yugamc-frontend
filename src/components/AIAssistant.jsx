@@ -7,43 +7,59 @@ import yugLogo from '../assets/yug logo.webp';
 
 const OnboardingPopup = ({ onChatNow, onDismiss }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 20, scale: 0.95 }}
-      className="fixed bottom-[180px] right-6 z-[10001] w-[280px] md:w-[320px] bg-white/80 backdrop-blur-xl border border-white/40 rounded-[24px] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.15)] group"
-    >
-      {/* Close Button */}
-      <button 
+    <>
+      {/* Backdrop Backdrop Overlay */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         onClick={onDismiss}
-        className="absolute top-4 right-4 p-1 hover:bg-black/5 rounded-full transition-colors text-text/40 hover:text-text"
+        className="fixed inset-0 bg-black/40 backdrop-blur-[8px] z-[10001] popup-overlay"
+      />
+      
+      {/* Popup Container */}
+      <motion.div
+        initial={{ opacity: 0, x: "-50%", y: "-60%", scale: 0.9 }}
+        animate={{ opacity: 1, x: "-50%", y: "-50%", scale: 1 }}
+        exit={{ opacity: 0, x: "-50%", y: "-60%", scale: 0.9 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[92%] max-w-[360px] bg-white rounded-[24px] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.2)] z-[10002] border border-secondary/50 popup-container"
       >
-        <X size={14} />
-      </button>
-
-      <div className="space-y-3">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center">
-            <Sparkles size={16} className="text-accent" />
-          </div>
-          <h4 className="font-serif text-lg text-text">Need Help?</h4>
-        </div>
-        
-        <p className="text-[13px] text-text/70 leading-relaxed font-sans">
-          If you have any questions or need assistance, connect with our <b>YUG AMC Assistant</b>.
-        </p>
-
-        <button
-          onClick={onChatNow}
-          className="w-full py-3 bg-accent text-white rounded-xl font-bold text-[12px] uppercase tracking-wider shadow-lg shadow-accent/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+        <button 
+          onClick={onDismiss}
+          className="absolute top-4 right-4 p-2 hover:bg-primary rounded-full transition-all text-text/30 hover:text-text hover:rotate-90 close-btn"
         >
-          Chat Now
+          <X size={20} />
         </button>
-      </div>
 
-      {/* Pointer Arrow */}
-      <div className="absolute -bottom-3 right-8 w-6 h-6 bg-white rotate-45 border-r border-b border-white/40 shadow-[10px_10px_20px_rgba(0,0,0,0.05)]" />
-    </motion.div>
+        <div className="space-y-6 text-center">
+          <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-2">
+            <Sparkles size={32} className="text-accent" />
+          </div>
+          
+          <div className="space-y-2">
+            <h4 className="font-serif text-2xl font-bold text-text">Need Assistance?</h4>
+            <p className="text-[14px] text-text/60 leading-relaxed font-sans mt-2">
+              Connect with our <b>YUG AMC Assistant</b> to explore Premium Luxury Real Estate in Jabalpur.
+            </p>
+          </div>
+
+          <button
+            onClick={onChatNow}
+            className="w-full py-4 bg-text text-white rounded-2xl font-bold text-xs uppercase tracking-[0.2em] shadow-xl shadow-text/10 hover:bg-accent hover:scale-[1.02] active:scale-[0.98] transition-all group overflow-hidden relative"
+          >
+            <span className="relative z-10">Start Conversation</span>
+            <motion.div 
+               className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500"
+            />
+          </button>
+          
+          <p className="text-[10px] text-text/30 uppercase tracking-widest font-bold">
+            Real-time Property Guidance
+          </p>
+        </div>
+      </motion.div>
+    </>
   );
 };
 
@@ -133,31 +149,33 @@ const AIAssistant = () => {
       setRegData({ name: parsed.name, email: parsed.email });
     }
 
-    // Onboarding Timer
+    // Auto-open logic after load
     if (!isOpen) {
       const timer = setTimeout(() => {
         setShowOnboarding(true);
-      }, 500); // Appear almost immediately after component mounts
+      }, 1000); // 1s delay after mount (Loader is already gone)
 
-      // Auto-dismiss after 8s
-      const dismissTimer = setTimeout(() => {
-        handleDismissOnboarding();
-      }, 11000);
-
-      return () => {
-        clearTimeout(timer);
-        clearTimeout(dismissTimer);
-      };
+      return () => clearTimeout(timer);
     }
+  }, []);
 
-    if (isOpen) {
+  // Lock scroll when modal is open
+  useEffect(() => {
+    if (isOpen || showOnboarding) {
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('popup-open');
       if (lenis) lenis.stop();
     } else {
       document.body.style.overflow = 'auto';
+      document.body.classList.remove('popup-open');
       if (lenis) lenis.start();
     }
-  }, [isOpen, lenis]);
+
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.body.classList.remove('popup-open');
+    };
+  }, [isOpen, showOnboarding, lenis]);
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
@@ -166,7 +184,6 @@ const AIAssistant = () => {
 
   const handleDismissOnboarding = () => {
     setShowOnboarding(false);
-    sessionStorage.setItem('yug_onboarding_seen', 'true');
   };
 
   const handleOpenFromOnboarding = () => {

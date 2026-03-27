@@ -211,30 +211,30 @@ const UpcomingProject = () => {
       </section>
 
       {/* 4. SECTION 3 – WALKWAY / LIFESTYLE (Full-width Cinematic) */}
-      <section className="py-16 md:py-20 relative z-10 w-full">
+      <section className="py-16 md:py-20 relative z-10 w-full upcoming-section">
           <motion.div 
           initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }} variants={staggerContainer}
-          className="relative w-full h-[300px] md:h-[450px] lg:h-[550px] flex items-center justify-center overflow-hidden"
+          className="relative w-full flex flex-col lg:h-[550px] lg:block overflow-hidden"
         >
-          <motion.div className="absolute inset-0 z-0">
+          <motion.div className="relative lg:absolute lg:inset-0 z-0 h-[250px] md:h-[400px] lg:h-full upcoming-image-container">
             <motion.img 
               variants={fullWidthImageReveal} src={retail_corridor} alt="Walkway Lifestyle" 
-              className="w-full h-full object-cover will-change-transform"
+              className="w-full h-full object-cover will-change-transform upcoming-image"
             />
             {/* Elegant Light Gradient Fade - refined to just top/bottom edges */}
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#f8f6f2] via-transparent to-transparent h-48 z-10" />
-            <div className="absolute top-0 inset-x-0 bg-gradient-to-b from-[#f8f6f2] via-transparent to-transparent h-48 z-10" />
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#f8f6f2] via-transparent to-transparent h-48 z-10 hidden lg:block" />
+            <div className="absolute top-0 inset-x-0 bg-gradient-to-b from-[#f8f6f2] via-transparent to-transparent h-48 z-10 hidden lg:block" />
           </motion.div>
           
-          <div className="relative z-20 container mx-auto px-6 text-center lg:text-left flex justify-center lg:justify-start lg:mt-60">
-            <div className="max-w-2xl bg-white/70 backdrop-blur-2xl border border-white rounded-[40px] p-10 md:p-14 shadow-2xl">
+          <div className="relative z-20 container mx-auto px-4 md:px-6 flex justify-center lg:justify-start -mt-10 lg:mt-60">
+            <div className="max-w-2xl bg-white/70 backdrop-blur-2xl border border-white rounded-[24px] lg:rounded-[40px] p-8 md:p-14 shadow-2xl content-card">
               <motion.p variants={textFadeUp} className="text-[#c47a5a] tracking-[0.4em] text-xs uppercase font-bold mb-4">
                 Walkway & Lifestyle
               </motion.p>
-              <motion.h2 variants={textFadeUp} className="text-4xl md:text-5xl font-serif font-light text-text font-bold mb-6 leading-tight">
+              <motion.h2 variants={textFadeUp} className="text-2xl md:text-5xl font-serif font-light text-text font-bold mb-6 leading-tight">
                 Designed for <br/> <span className="italic font-normal text-[#c47a5a]">Modern Living</span>
               </motion.h2>
-              <motion.p variants={textFadeUp} className="text-text font-bold text-lg font-light leading-relaxed">
+              <motion.p variants={textFadeUp} className="text-text font-bold text-sm md:text-lg font-light leading-relaxed">
                 Seamless connectivity across brilliant corridors, creating an inviting atmosphere that blends shopping, leisure, and entertainment perfectly.
               </motion.p>
             </div>

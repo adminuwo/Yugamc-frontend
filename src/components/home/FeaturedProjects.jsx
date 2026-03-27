@@ -36,7 +36,7 @@ const FeaturedProjects = () => {
 
   return (
     <section className="py-24 bg-[#EDEDED]/30 overflow-hidden">
-      <div className="container mx-auto px-12 max-w-7xl relative">
+      <div className="container mx-auto px-6 md:px-12 max-w-7xl relative">
         
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
           <motion.div 
@@ -64,17 +64,17 @@ const FeaturedProjects = () => {
         </div>
 
         <div className="relative">
-          {/* Side Navigation Arrows (Always Visible) */}
+          {/* Side Navigation Arrows (Always Visible on Mobile via media query or removing hidden) */}
           <button 
             onClick={scrollPrev}
-            className="absolute left-[-40px] lg:left-[-60px] top-[150px] md:top-[200px] z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-text/5 flex items-center justify-center hover:bg-accent hover:text-white transition-all active:scale-90 hidden md:flex"
+            className="absolute left-[-10px] md:-left-12 lg:-left-16 top-[150px] md:top-[200px] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/70 backdrop-blur-sm shadow-lg border border-text/5 flex items-center justify-center hover:bg-accent hover:text-white transition-all active:scale-95 carousel-arrow"
           >
             <ArrowLeft size={20} />
           </button>
           
           <button 
             onClick={scrollNext}
-            className="absolute right-[-40px] lg:right-[-60px] top-[150px] md:top-[200px] z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-text/5 flex items-center justify-center hover:bg-accent hover:text-white transition-all active:scale-90 hidden md:flex"
+            className="absolute right-[-10px] md:-right-12 lg:-right-16 top-[150px] md:top-[200px] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/70 backdrop-blur-sm shadow-lg border border-text/5 flex items-center justify-center hover:bg-accent hover:text-white transition-all active:scale-95 carousel-arrow"
           >
             <ArrowRight size={20} />
           </button>
@@ -91,7 +91,7 @@ const FeaturedProjects = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ duration: 0.8, delay: index * 0.1, ease: [0.76, 0, 0.24, 1] }}
-                className="flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[35vw] group"
+                className="flex-shrink-0 w-[82vw] md:w-[45vw] lg:w-[35vw] group"
                 style={{ scrollSnapAlign: 'start' }}
               >
                 <Link to={`/projects/${project.id}`}>

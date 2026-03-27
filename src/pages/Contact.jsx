@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Phone, Mail, MapPin, Send } from 'lucide-react';
+import { Plus, Phone, Mail, MapPin, Send, Laptop, Landmark, Home, Briefcase } from 'lucide-react';
+import CustomDropdown from '../components/common/CustomDropdown';
 import c1 from '../assets/c1.jpg';
 import d2 from '../assets/d2.jpg';
 
@@ -248,35 +249,36 @@ const Contact = () => {
                       onChange={e=>setFormData({...formData, email: e.target.value})} 
                     />
                   </div>
-                  <div className="group relative">
-                    <label className="block text-[10px] tracking-[0.2em] font-bold uppercase text-accent mb-2">Requirement</label>
-                    <select 
-                      required 
-                      className="w-full bg-secondary/50 border-b-2 border-transparent px-0 py-3 outline-none focus:border-accent transition-all duration-300 font-sans text-text appearance-none cursor-pointer" 
-                      value={formData.requirement} 
-                      onChange={e=>setFormData({...formData, requirement: e.target.value})}
-                    >
-                      <option>Residential</option>
-                      <option>Commercial</option>
-                      <option>Investment</option>
-                    </select>
-                  </div>
+                  <CustomDropdown
+                    label="Requirement"
+                    name="requirement"
+                    value={formData.requirement}
+                    onChange={e => setFormData({ ...formData, requirement: e.target.value })}
+                    icon={Briefcase}
+                    placeholder="Select Requirement"
+                    options={[
+                      { value: "Residential", label: "Residential" },
+                      { value: "Commercial", label: "Commercial" },
+                      { value: "Investment", label: "Investment" }
+                    ]}
+                  />
                 </div>
 
-                <div className="group relative">
-                  <label className="block text-[10px] tracking-[0.2em] font-bold uppercase text-accent mb-2">Preferred Project (Optional)</label>
-                  <select 
-                    className="w-full bg-secondary/50 border-b-2 border-transparent px-0 py-3 outline-none focus:border-accent transition-all duration-300 font-sans text-text appearance-none cursor-pointer" 
-                    value={formData.project} 
-                    onChange={e=>setFormData({...formData, project: e.target.value})}
-                  >
-                    <option value="">None / Not Sure</option>
-                    <option value="City Plaza">City Plaza</option>
-                    <option value="Yash Heights">Yash Heights</option>
-                    <option value="SG Square">SG Square</option>
-                    <option value="Yug Villas">Yug Villas</option>
-                  </select>
-                </div>
+                <CustomDropdown
+                  label="Preferred Project (Optional)"
+                  name="project"
+                  value={formData.project}
+                  onChange={e => setFormData({ ...formData, project: e.target.value })}
+                  icon={Home}
+                  placeholder="None / Not Sure"
+                  options={[
+                    { value: "", label: "None / Not Sure" },
+                    { value: "City Plaza", label: "City Plaza" },
+                    { value: "Yash Heights", label: "Yash Heights" },
+                    { value: "SG Square", label: "SG Square" },
+                    { value: "Yug Villas", label: "Yug Villas" }
+                  ]}
+                />
                 
                 <div className="group relative">
                   <label className="block text-[10px] tracking-[0.2em] font-bold uppercase text-accent mb-2">Message</label>
