@@ -72,6 +72,14 @@ const Projects = () => {
                     ))}
                   </div>
 
+                  <Link 
+                    to={`/projects/${project.id}`}
+                    className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-accent hover:text-accent/80 transition-colors"
+                  >
+                    <span>Explore Project</span>
+                    <span className="w-8 h-[1px] bg-accent transition-all duration-500 group-hover:w-16"></span>
+                  </Link>
+
                 </motion.div>
 
                 {/* Image Content */}
