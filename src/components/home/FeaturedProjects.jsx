@@ -99,13 +99,22 @@ const FeaturedProjects = () => {
                     <img 
                       src={project.images[0]} 
                       alt={project.name} 
-                      className="w-full h-full object-cover transition-transform duration-[1800ms] group-hover:scale-110"
+                      className={`w-full h-full object-cover transition-transform duration-[1800ms] group-hover:scale-110 ${project.badge ? 'brightness-[0.25] blur-[2px]' : ''}`}
                     />
-                    {/* Luxury Overlay */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col items-center justify-center backdrop-blur-[2px]">
-                       <div className="w-12 h-[1px] bg-accent mb-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-100"></div>
-                       <span className="text-white font-sans tracking-[0.5em] uppercase text-[10px] font-bold">Explore Project</span>
-                    </div>
+                    {/* Coming Soon Overlay */}
+                    {project.badge ? (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                        <span className="text-[9px] tracking-[0.5em] uppercase text-white/40 font-bold mb-3">Coming Soon</span>
+                        <h4 className="text-xl md:text-2xl font-serif text-white mb-3 leading-tight">{project.name}</h4>
+                        <div className="w-10 h-[1px] bg-accent mx-auto mb-3" />
+                        <p className="text-white/40 text-[10px] font-sans tracking-widest uppercase">{project.location}</p>
+                      </div>
+                    ) : (
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col items-center justify-center backdrop-blur-[2px]">
+                         <div className="w-12 h-[1px] bg-accent mb-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-100"></div>
+                         <span className="text-white font-sans tracking-[0.5em] uppercase text-[10px] font-bold">Explore Project</span>
+                      </div>
+                    )}
                   </div>
                 </Link>
                 <div className="flex flex-col space-y-3 px-2">
@@ -114,7 +123,12 @@ const FeaturedProjects = () => {
                      <div className="w-4 h-[1px] bg-text/10" />
                      <span className="text-[9px] uppercase tracking-[0.1em] text-text/40 font-bold">{project.status}</span>
                    </div>
-                   <h3 className="text-2xl md:text-3xl font-serif text-text group-hover:text-accent transition-colors duration-500">{project.name}</h3>
+                   <div className="flex items-baseline gap-2 flex-wrap">
+                     <h3 className="text-2xl md:text-3xl font-serif text-text group-hover:text-accent transition-colors duration-500">{project.name}</h3>
+                     {project.badge && (
+                       <span className="text-[10px] font-normal tracking-widest text-text/40 lowercase">{project.badge}</span>
+                     )}
+                   </div>
                    <p className="text-text font-bold font-sans text-xs max-w-sm line-clamp-2 leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">{project.description}</p>
                    
                    <Link to={`/projects/${project.id}`} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-accent mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">

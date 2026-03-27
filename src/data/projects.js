@@ -10,6 +10,7 @@ import uwo_comm from '../assets/uwo_commercial.jpeg';
 import sbi_comm from '../assets/commercial_elevation_1.jpeg';
 import naivedyam_comm from '../assets/commercial_elevation_2.jpeg';
 import yash_heights_entrance from '../assets/yash_heights_entrance.jpeg';
+import currency_tower from '../assets/currency_tower.png';
 
 export const projectsData = [
   {
@@ -69,7 +70,7 @@ export const projectsData = [
   },
   {
     id: "satguru-city-mall",
-    name: "Satguru City Mall (Coming Soon)",
+    name: "Satguru City Mall",
     location: "Tilhari, Jabalpur",
     year: "In Progress",
     status: "Ongoing",
@@ -87,17 +88,18 @@ export const projectsData = [
     type: "Commercial",
     description: "A futuristic tower conceptualized for elite businesses seeking unparalleled prestige and connectivity.",
     highlights: ["Iconic Architecture", "Business Center", "Modern Design"],
-    images: [elevation_1_2, ss4]
+    images: [currency_tower, ss4]
   },
   {
     id: "logistic-park",
-    name: "Logistic Park (Coming Soon)",
+    name: "Logistic Park",
+    badge: "Coming Soon",
     location: "Nigri, Bargi",
     year: "Upcoming",
     status: "Upcoming",
     type: "Commercial",
     description: "A massive, ultra-modern warehousing and logistics park strategically located for optimal supply chain efficiency.",
     highlights: ["Warehousing", "Supply Chain Hub", "Strategic Connectivity"],
-    images: [ss5, uwo_comm]
+    images: [naivedyam_comm, sbi_comm, uwo_comm]
   }
 ];

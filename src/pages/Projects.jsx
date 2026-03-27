@@ -49,8 +49,11 @@ const Projects = () => {
                     {project.status === 'Completed' ? 'Delivered' : project.status} | {project.year !== '-' ? project.year : 'TBD'}
                   </span>
                   
-                  <h2 className="text-4xl md:text-6xl font-serif text-text mb-4">
+                  <h2 className="text-4xl md:text-6xl font-serif text-text mb-4 flex items-baseline gap-3 flex-wrap">
                     {project.name}
+                    {project.badge && (
+                      <span className="text-sm font-sans font-normal text-text/30 tracking-widest lowercase">{project.badge}</span>
+                    )}
                   </h2>
                   
                   <p className="font-sans italic text-text font-bold mb-8 border-l-2 border-accent pl-4">
@@ -69,13 +72,6 @@ const Projects = () => {
                     ))}
                   </div>
 
-                  <Link 
-                    to={`/projects/${project.id}`}
-                    className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-text hover:text-accent transition-colors"
-                  >
-                    <span>Explore Project</span>
-                    <span className="w-8 h-[1px] bg-text transition-all duration-500 group-hover:bg-accent group-hover:w-16"></span>
-                  </Link>
                 </motion.div>
 
                 {/* Image Content */}
@@ -90,9 +86,17 @@ const Projects = () => {
                     <img 
                       src={project.images[0]} 
                       alt={project.name} 
-                      className="w-full h-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
+                      className={`w-full h-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 ${project.badge ? 'brightness-[0.3] blur-[2px]' : ''}`}
                     />
                     <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-700"></div>
+                    {project.badge && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
+                        <span className="text-[10px] tracking-[0.5em] uppercase text-white/50 font-bold mb-4">Coming Soon</span>
+                        <h3 className="text-3xl md:text-5xl font-serif text-white mb-3">{project.name}</h3>
+                        <div className="w-12 h-[1px] bg-accent mx-auto mb-3" />
+                        <p className="text-white/50 text-xs font-sans tracking-widest uppercase">{project.location}</p>
+                      </div>
+                    )}
                   </Link>
                 </motion.div>
                 

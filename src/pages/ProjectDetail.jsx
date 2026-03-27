@@ -105,22 +105,7 @@ const ProjectDetail = () => {
                     </div>
                 </motion.div>
                 
-                {/* Gallery Grid */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ duration: 0.8 }}
-                >
-                     <h2 className="text-3xl font-serif mb-6 text-text">Gallery</h2>
-                     <div className="grid grid-cols-2 gap-4">
-                        {project.images.slice(1).map((img, idx) => (
-                            <div key={idx} className={`rounded-2xl overflow-hidden shadow-md aspect-square ${idx === 2 ? 'col-span-2 aspect-[21/9]' : ''}`}>
-                                <img src={img} alt={`Gallery ${idx}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-                            </div>
-                        ))}
-                     </div>
-                </motion.div>
+
             </div>
 
             {/* Right Sticky Sidebar CTA */}
