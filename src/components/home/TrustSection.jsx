@@ -103,10 +103,10 @@ const TrustSection = () => {
         className="container mx-auto px-6 max-w-[1500px] relative z-20"
       >
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 items-center">
-          <AnimatedCounter index={0} end={10} suffix="+" label="Years of Trust" desc="A Decade of Excellence" />
-          <AnimatedCounter index={1} end={15} suffix="+" label="Masterpieces Built" desc="Iconic Developments" />
-          <AnimatedCounter index={2} end={500} suffix="+" label="Families Happy" desc="Lives Transformed" />
-          <AnimatedCounter index={3} end={1} suffix="M+" label="SQ. FT. Area" desc="Quality Urban Spaces" />
+          <AnimatedCounter index={0} end={13} suffix="+" label="Years of Experience" desc="A Legacy of Excellence" />
+          <AnimatedCounter index={1} end={120} suffix="+" label="Homes Delivered" desc="Premium Living Spaces" />
+          <AnimatedCounter index={2} end={3} suffix="+" label="Commercial Landmarks" desc="Strategic Business Hubs" />
+          <AnimatedCounter index={3} end={10} suffix="+" label="Locations Transformed" desc="Urban Revitalization" />
         </div>
       </motion.div>
 

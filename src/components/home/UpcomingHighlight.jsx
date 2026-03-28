@@ -5,7 +5,7 @@ import elevation_1_2 from '../../assets/elevation_1_2.png';
 
 const UpcomingHighlight = () => {
   return (
-    <section className="py-32 bg-[#EDEDED]/20 overflow-hidden">
+    <section className="py-20 bg-[#EDEDED]/20 overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           
@@ -16,7 +16,7 @@ const UpcomingHighlight = () => {
             transition={{ duration: 1.5, ease: "easeOut" }}
             className="order-2 lg:order-1 relative"
           >
-            <div className="aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)]">
+            <div className="aspect-square overflow-hidden rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)]">
               <img 
                 src={elevation_1_2} 
                 alt="City Plaza" 
@@ -35,11 +35,12 @@ const UpcomingHighlight = () => {
             className="order-1 lg:order-2"
           >
             <span className="text-accent tracking-[0.5em] text-[10px] uppercase font-bold mb-8 block">Project Spotlight</span>
+            <h4 className="text-[10px] font-sans tracking-[0.4em] uppercase text-text/40 font-bold mb-4">The Next Big Destination for Commercial Growth</h4>
             <h2 className="text-6xl md:text-8xl font-serif text-text mb-10 leading-[0.9] tracking-tighter">
               City <br /> <span className="italic font-light text-accent">Plaza.</span>
             </h2>
             <p className="text-xl text-text font-bold font-sans leading-relaxed mb-12 max-w-lg">
-              Designing the future of commercial spaces in Jabalpur. City Plaza is set to be the city's most iconic retail and business destination, combining avant-garde architecture with prime connectivity.
+              City Plaza is envisioned as a high-potential commercial destination for brands, investors, retailers, and entrepreneurs looking for visibility, footfall, and future appreciation. Designed to become a key business landmark, it brings together location advantage, commercial relevance, and long-term investment value.
             </p>
             <div className="flex flex-col sm:flex-row gap-10">
                <Link to="/upcoming" className="group flex items-center gap-4 text-xs font-sans tracking-[0.3em] uppercase text-text font-bold hover:text-accent transition-colors duration-500">
@@ -47,7 +48,7 @@ const UpcomingHighlight = () => {
                  <div className="w-8 h-[1px] bg-text/20 group-hover:bg-accent group-hover:w-12 transition-all duration-500"></div>
                </Link>
                <Link to="/contact" className="group flex items-center gap-4 text-xs font-sans tracking-[0.3em] uppercase text-text font-bold hover:text-accent transition-colors duration-500">
-                 Book Space
+                 Book Commercial Space
                  <div className="w-8 h-[1px] bg-text/20 group-hover:bg-accent group-hover:w-12 transition-all duration-500"></div>
                </Link>
             </div>

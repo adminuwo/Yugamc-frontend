@@ -57,19 +57,19 @@ const AboutVideoSection = () => {
               <span className="italic font-light text-accent">Creating Value.</span>
             </h2>
             <p className="text-lg text-text/70 font-sans leading-relaxed mb-8">
-              Experience spaces where families grow, businesses thrive, and every moment feels secure and rewarding.
+              Transforming Jabalpur's skyline through thoughtful residential and commercial development.
             </p>
             
             {/* Design Element: Stats Divider */}
             <div className="flex items-center gap-8 pt-8 border-t border-text/10">
               <div>
-                <span className="text-3xl font-serif text-text block mb-1">10<span className="text-accent">+</span></span>
-                <span className="text-[10px] tracking-widest uppercase text-text/50 font-bold">Years of Legacy</span>
+                <span className="text-3xl font-serif text-text block mb-1">13<span className="text-accent">+</span></span>
+                <span className="text-[10px] tracking-widest uppercase text-text/50 font-bold">Years of Experience</span>
               </div>
               <div className="h-10 w-px bg-text/10" />
               <div>
-                <span className="text-3xl font-serif text-text block mb-1">50<span className="text-accent">+</span></span>
-                <span className="text-[10px] tracking-widest uppercase text-text/50 font-bold">Projects Delivered</span>
+                <span className="text-3xl font-serif text-text block mb-1">120<span className="text-accent">+</span></span>
+                <span className="text-[10px] tracking-widest uppercase text-text/50 font-bold">Homes Delivered</span>
               </div>
             </div>
           </motion.div>

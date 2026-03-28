@@ -66,8 +66,8 @@ const Hero = ({ onBookVisit }) => {
             transition={{ duration: 1.2, delay: 0.7, ease: [0.76, 0, 0.24, 1] }}
             className="text-6xl md:text-8xl lg:text-[10rem] font-serif text-text leading-[0.9] tracking-tighter"
           >
-            Building <span className="italic font-light">Elevated</span> <br /> 
-            <span className="text-accent">Living</span> Spaces
+            Building <span className="italic font-light">Landmarks,</span> <br /> 
+            <span className="text-accent">Creating</span> Value
           </motion.h1>
         </div>
 
@@ -75,7 +75,7 @@ const Hero = ({ onBookVisit }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="text-lg md:text-xl text-text font-bold font-sans max-w-2xl mb-12 font-light tracking-wide"
+          className="text-lg md:text-xl text-text font-bold font-sans max-w-2xl mb-12 tracking-wide"
         >
           Redefining the skyline of Jabalpur with architectural excellence and uncompromising luxury.
         </motion.p>

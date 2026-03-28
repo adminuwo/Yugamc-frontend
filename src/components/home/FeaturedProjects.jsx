@@ -35,7 +35,7 @@ const FeaturedProjects = () => {
   };
 
   return (
-    <section className="py-24 bg-[#EDEDED]/30 overflow-hidden">
+    <section className="py-16 bg-[#EDEDED]/30 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 max-w-7xl relative">
         
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -46,7 +46,10 @@ const FeaturedProjects = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="text-accent tracking-[0.3em] text-[10px] uppercase font-bold mb-2 block">Premium Portfolio</span>
-            <h2 className="text-4xl md:text-6xl font-serif text-text leading-tight">Our Signature <span className="italic font-light">Developments</span></h2>
+            <h2 className="text-4xl md:text-6xl font-serif text-text leading-tight mb-6">Projects That Speak <br/><span className="italic font-light">for Our Legacy</span></h2>
+            <p className="text-lg text-text font-bold font-sans max-w-2xl leading-relaxed opacity-70">
+              From residential communities to commercial landmarks, our portfolio reflects thoughtful planning, trusted execution, and future-ready value.
+            </p>
           </motion.div>
           
           <motion.div

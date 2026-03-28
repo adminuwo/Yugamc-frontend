@@ -21,7 +21,7 @@ const AboutPreview = () => {
               We Build <span className="text-accent">Trust.</span>
             </h2>
             <p className="text-lg text-text font-bold font-sans leading-relaxed mb-10 font-light max-w-xl">
-              With over a decade of experience, we don’t just create buildings; we create landmarks that define the spirit of Jabalpur. Every brick we lay is a testament to our commitment to quality.
+              YUGAMC is not just in the business of constructing buildings. We create residential and commercial spaces that shape lifestyles, support business growth, and generate long-term value. With over a decade of real estate experience in Jabalpur, our focus has always remained the same — quality construction, strategic locations, timely delivery, and trust that lasts beyond possession.
             </p>
             <Link to="/about" className="group flex items-center gap-4 text-xs font-sans tracking-[0.3em] uppercase text-text font-bold hover:text-accent transition-colors duration-500">
                Know Our Story

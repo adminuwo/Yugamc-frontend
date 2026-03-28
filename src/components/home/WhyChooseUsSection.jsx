@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 
 const WhyChooseUsSection = () => {
   const points = [
-    { title: 'Premium Quality Construction', desc: 'Sourcing the best materials to ensure durability and aesthetic excellence.' },
-    { title: 'Strategic Locations', desc: 'All projects are situated in prime zones with high future appreciation value.' },
-    { title: 'Modern Architecture', desc: 'Timeless designs matching international real estate standards.' },
-    { title: 'Timely Project Delivery', desc: 'Committed to handing over possession safely and exactly on promised dates.' },
-    { title: 'Transparent Process', desc: 'Clear communication, 100% legal compliance, and no hidden costs.' },
-    { title: 'Customer-First Approach', desc: 'Building relationships that last longer than the concrete.' },
+    { title: 'Strategic Locations', desc: 'We develop where connectivity, growth, and future appreciation matter.' },
+    { title: 'Proven Experience', desc: 'With 13+ years in real estate, our work is backed by execution, not just promises.' },
+    { title: 'Residential + Commercial Expertise', desc: 'From premium homes to business spaces, we understand both lifestyle and investment.' },
+    { title: 'Quality That Builds Trust', desc: 'Every project is designed with attention to structure, planning, and long-term usability.' },
+    { title: 'Timely Delivery Mindset', desc: 'We respect your time, your money, and your future plans.' },
+    { title: 'Value-Driven Development', desc: "We don't just create spaces. We create assets." },
   ];
 
   return (
@@ -30,7 +30,7 @@ const WhyChooseUsSection = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-serif text-text"
           >
-            Why Choose <span className="italic font-light">YugAMC</span>
+            Why Buyers and <span className="italic font-light text-accent">Investors</span> Choose <span className="italic font-light">YUGAMC</span>
           </motion.h2>
         </div>
 

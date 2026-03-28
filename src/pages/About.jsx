@@ -203,19 +203,19 @@ const About = () => {
               </h2>
 
               <div className="mb-10">
-                <h3 className="text-3xl md:text-4xl font-serif text-text mb-2">Mr. Gurumukh P Ahuja</h3>
+                <h3 className="text-3xl md:text-4xl font-serif text-text mb-2">Mr. Gurumukh P. Ahuja</h3>
                 <div className="flex items-center gap-3 text-text/40">
-                  <span className="text-[11px] tracking-[0.2em] uppercase font-bold">Founder & Visionary Leader</span>
+                  <span className="text-[11px] tracking-[0.2em] uppercase font-bold">Founder, YUGAMC</span>
                   <div className="w-1.5 h-1.5 bg-accent rounded-full" />
                 </div>
               </div>
 
-              <div className="space-y-6 mb-12">
+               <div className="space-y-6 mb-12">
                 <p className="text-lg md:text-xl text-text font-bold font-sans leading-relaxed border-l-2 border-secondary/30 pl-6">
-                  With over three decades of mastery in real estate and architectural development, Mr. Ahuja embodies the spirit of YUG AMC. His journey is defined by a singular pursuit: translating complex dreams into tangible landmarks.
+                  Mr. Gurumukh P. Ahuja is the founder of YUGAMC, with over 13+ years of experience in the real estate industry. He has successfully delivered a range of residential and commercial projects, built on a strong foundation of trust, quality, and long-term value.
                 </p>
                 <p className="text-lg text-text font-bold font-sans leading-relaxed opacity-70 pl-6">
-                  Under his visionary leadership, we don't just prioritize construction; we prioritize the lives that will flourish within them, ensuring every project is a testament to quality and integrity.
+                  His vision is centered around creating future-ready spaces that not only meet present-day needs but also serve as smart investments for the years ahead. Under his leadership, YUGAMC continues to grow as a trusted name in real estate, driven by innovation, planning, and customer-focused development.
                 </p>
               </div>
 

@@ -20,7 +20,7 @@ export const projectsData = [
     year: "2011",
     status: "Completed",
     type: "Residential",
-    description: "A benchmark of premium independent living offering exquisite design and comfort in the heart of Panchsheel Nagar.",
+    description: "Located in Panchsheel Nagar, Yug Villas marked the beginning of YUGAMC's journey in residential development. This exclusive project features 5 thoughtfully designed duplex homes with modern amenities and functional layouts. Built with a focus on comfort and quality, it set the foundation for the brand's commitment to better living.",
     highlights: ["Independent Living", "Premium Design", "Prime Location"],
     images: [villa1, ss1, ss2]
   },
@@ -31,7 +31,7 @@ export const projectsData = [
     year: "2012",
     status: "Completed",
     type: "Commercial",
-    description: "An iconic commercial and lifestyle destination redefining the urban landscape of Rampur Chowk.",
+    description: "Situated at the prime location of Rampur Chowk, SG Square is a well-planned commercial development designed for visibility and accessibility. With a mix of retail shops and office spaces, it caters to growing businesses and daily commercial activity. Its strategic positioning makes it a strong hub for business presence.",
     highlights: ["Strategic Location", "High Footfall", "Modern Facade"],
     images: [sg_square, ss3, ss4]
   },
@@ -42,7 +42,7 @@ export const projectsData = [
     year: "2013–2016",
     status: "Completed",
     type: "Residential",
-    description: "A secure and luxurious residential complex offering premium lifestyle choices and state-of-the-art amenities.",
+    description: "Located in Dhanvantri Nagar, Yash Heights is a premium residential project offering spacious 2 & 3 BHK apartments across a 4-storey development. Designed to balance comfort, functionality, and modern lifestyle needs, it provides a complete living experience with essential amenities. Built for today while adapting to tomorrow, it reflects long-term value and thoughtful planning.",
     highlights: ["Luxury Residences", "Grand Entrance", "Secure Living"],
     images: [yash_heights_entrance, ss1, ss5]
   },
@@ -53,7 +53,7 @@ export const projectsData = [
     year: "2019",
     status: "Completed",
     type: "Commercial",
-    description: "A cutting-edge IT and business hub designed to foster innovation and corporate excellence.",
+    description: "Developed on Narmada Road, UWO IT Mall is a modern commercial space designed to support retail and business growth. Featuring shops and restaurant spaces, it creates a dynamic environment for customer engagement and business visibility. The project reflects YUGAMC's focus on evolving commercial needs.",
     highlights: ["Corporate Suites", "High Tech Infrastructure", "Prime Location"],
     images: [uwo_comm, ss2]
   },
@@ -64,13 +64,13 @@ export const projectsData = [
     year: "2021",
     status: "Completed",
     type: "Commercial",
-    description: "A distinguished commercial landmark featuring modern architecture and premium facilities.",
+    description: "Located on Gwarighat Road, the SBI Building stands as a reliable commercial asset with practical design and strong usability. Offering shops and spacious halls, it supports both retail and institutional functions. Built with precision and trust, it represents YUGAMC's consistent execution quality.",
     highlights: ["Strategic Location", "Premium Outlets", "Corporate Center"],
     images: [sbi_comm, ss3]
   },
   {
     id: "satguru-city-mall",
-    name: "Satguru City Mall",
+    name: "City Plaza",
     location: "Tilhari, Jabalpur",
     year: "In Progress",
     status: "Ongoing",
@@ -82,6 +82,7 @@ export const projectsData = [
   {
     id: "currency-tower",
     name: "Currency Tower",
+    badge: "Coming Soon",
     location: "Mangeli, Jabalpur",
     year: "Upcoming",
     status: "Upcoming",

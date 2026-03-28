@@ -113,7 +113,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-serif text-lg mb-1 text-text">Office Address</h4>
-                      <p className="font-sans text-text font-bold text-sm leading-relaxed">SG Square, Rampur Chowk, Jabalpur</p>
+                      <p className="font-sans text-text font-bold text-sm leading-relaxed">4th Floor, SG Square Building, <br/> near Punjab National Bank, Rampur Chowk, Jabalpur</p>
                     </div>
                   </div>
                   <div className="flex items-start">

@@ -121,7 +121,7 @@ const Footer = () => {
             <ul className="space-y-5 font-sans">
               <li><Link to="/about" className="hover:text-accent transition-colors duration-300">About Us</Link></li>
               <li><Link to="/projects" className="hover:text-accent transition-colors duration-300">Projects</Link></li>
-              <li><Link to="/upcoming" className="hover:text-accent transition-colors duration-300">City Plaza</Link></li>
+              <li><Link to="/upcoming" className="hover:text-accent transition-colors duration-300">Upcoming Projects</Link></li>
               <li><Link to="/why-us" className="hover:text-accent transition-colors duration-300">Why Choose Us</Link></li>
               <li><Link to="/contact" className="hover:text-accent transition-colors duration-300">Contact</Link></li>
             </ul>
@@ -138,7 +138,7 @@ const Footer = () => {
                   className="flex items-start gap-3 group hover:text-accent transition-colors duration-300"
                 >
                   <MapPin className="mt-1 text-accent transition-transform duration-300 group-hover:scale-110" size={18} />
-                  <span>SG Square, Rampur Chowk,<br/> Jabalpur, MP</span>
+                   <span>4th Floor, SG Square Building, <br/> near Punjab National Bank, Rampur Chowk,<br/> Jabalpur</span>
                 </a>
 
                 <a 

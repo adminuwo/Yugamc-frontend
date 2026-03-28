@@ -85,6 +85,7 @@ const AIAssistant = () => {
   const lenis = useLenis();
 
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
   const recognitionRef = useRef(null);
   const [isListening, setIsListening] = useState(false);
 
@@ -94,7 +95,10 @@ const AIAssistant = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [chatHistory, isLoading]);
+    if (!isLoading && isRegistered && isOpen) {
+        inputRef.current?.focus();
+    }
+  }, [chatHistory, isLoading, isRegistered, isOpen]);
 
   useEffect(() => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -122,6 +126,30 @@ const AIAssistant = () => {
       };
     }
   }, []);
+
+  const formatMessage = (text) => {
+    if (!text) return "";
+    
+    // Process line by line for headings
+    let lines = text.split('\n');
+    let formattedLines = lines.map(line => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('### ')) {
+        return `<h4 class="font-serif text-[17px] font-bold text-text mt-6 mb-2">${trimmed.replace('### ', '')}</h4>`;
+      }
+      return line;
+    });
+
+    let content = formattedLines.join('\n');
+    
+    // Replace **bold** with <b>
+    content = content.replace(/\*\*(.*?)\*\*/g, '<b class="text-text font-bold">$1</b>');
+    
+    // Support existing <b> if any
+    content = content.replace(/<b>(.*?)<\/b>/g, '<b class="text-text font-bold">$1</b>');
+
+    return content;
+  };
 
   const toggleListening = () => {
     if (isListening) {
@@ -374,7 +402,7 @@ const AIAssistant = () => {
             initial={{ opacity: 0, scale: 0.9, x: "-50%", y: "-50%" }}
             animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
             exit={{ opacity: 0, scale: 0.9, x: "-50%", y: "-50%" }}
-            className="fixed top-1/2 left-1/2 w-[calc(100vw-32px)] md:w-[50%] h-[85vh] bg-white z-[10000] shadow-[0_20px_60px_rgba(0,0,0,0.2)] rounded-[2.5rem] overflow-hidden flex flex-col border border-secondary"
+            className="fixed top-1/2 left-1/2 w-[calc(100vw-32px)] md:w-[65%] h-[85vh] bg-white z-[10000] shadow-[0_20px_60px_rgba(0,0,0,0.2)] rounded-[2.5rem] overflow-hidden flex flex-col border border-secondary"
           >
             {/* Panel Header */}
             <div className="p-6 bg-primary border-b border-secondary flex items-center justify-between">
@@ -477,7 +505,7 @@ const AIAssistant = () => {
                       </div>
                       <div className={`p-4 rounded-2xl text-sm md:text-[15px] leading-relaxed max-w-[85%] font-sans whitespace-pre-wrap ${msg.role === 'user' ? 'bg-accent text-white rounded-tr-none' : 'bg-primary/50 text-text/80 rounded-tl-none'}`}>
                         {msg.role === 'model' ? (
-                          <span dangerouslySetInnerHTML={{ __html: msg.parts[0].text }} />
+                          <div dangerouslySetInnerHTML={{ __html: formatMessage(msg.parts[0].text) }} />
                         ) : (
                           msg.parts[0].text
                         )}
@@ -526,6 +554,7 @@ const AIAssistant = () => {
             <form onSubmit={handleSendMessage} className={`p-6 border-t border-secondary bg-white ${!isRegistered ? 'opacity-50 pointer-events-none grayscale' : ''}`}>
               <div className="relative flex items-center">
                 <input
+                  ref={inputRef}
                   type="text"
                   placeholder={isListening ? "Listening..." : "Type your message..."}
                   className="w-full bg-primary/30 border border-secondary rounded-2xl py-4 pl-6 pr-[80px] outline-none focus:ring-1 focus:ring-accent transition-all text-sm md:text-base font-sans"
